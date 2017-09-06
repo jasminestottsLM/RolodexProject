@@ -33,4 +33,27 @@ public class RolodexApiController {
 	public Card create(@RequestBody Card card) {
 		return cardRepo.save(card);
 	}
+	
+//	@GetMapping("{id}")
+//	public Card getOne(@PathVariable long id) {
+//		Card card = cardRepo.findOne(id);
+//		return card;
+//	}
+//	
+//	@PutMapping("{id}")
+//	public Card update(@RequestBody Card card, @PathVariable long id) {
+//		card.setId(id);
+//		return cardRepo.save(card);
+//	}
+//	
+//	@DeleteMapping("{id}")
+//	public Card deleteOne(@PathVariable long id) {
+//		try {
+//			Card card = cardRepo.findOne(id);
+//			cardRepo.delete(id);
+//			return card;
+//		} catch (EmptyResultDataAccessException erdae) {
+//			return null;
+//		}
+//	}
 }
