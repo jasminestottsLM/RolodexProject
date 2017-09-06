@@ -115,7 +115,7 @@ public class RolodexApiController {
         }
     }
 
-    @PostMapping("{id}")
+    @PostMapping("{id}/addresses")
     public Card associateAnAddress(@PathVariable long cardId, @RequestBody Address address) {
         Card card = cardRepo.findOne(cardId);
         address = addressRepo.findOne(address.getId());
@@ -124,7 +124,7 @@ public class RolodexApiController {
         return card;
     }
 
-    @PostMapping("{id}")
+    @PostMapping("{id}/phones")
     public Card associateAPhoneNumber(@PathVariable long cardId, @RequestBody PhoneNumber phoneNumber) {
         Card card = cardRepo.findOne(cardId);
         phoneNumber = phoneRepo.findOne(phoneNumber.getId());

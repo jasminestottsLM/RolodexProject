@@ -30,7 +30,7 @@ public class RolodexApiControllerTests {
 	@Before
 	public void setUp() {
 		cardRepo = mock(CardRepository.class);
-		controller = new RolodexApiController(cardRepo, addressRepo, phonenoRepo);
+		controller = new RolodexApiController(cardRepo);
 	}
 	
 	@Test
