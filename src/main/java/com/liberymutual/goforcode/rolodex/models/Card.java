@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.apache.tomcat.jni.Address;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,6 +48,16 @@ public class Card {
 	@OneToMany(mappedBy="card")
 	private List<PhoneNumber> phoneNumbers;
 
+	public Card () {
+	}
+	
+	public Card (Long id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -89,21 +98,21 @@ public class Card {
 		this.companyName = companyName;
 	}
 
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public List<PhoneNumber> getPhoneNumbers() {
-		return phoneNumbers;
-	}
-
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
-	}
+//	public List<Address> getAddresses() {
+//		return addresses;
+//	}
+//
+//	public void setAddresses(List<Address> addresses) {
+//		this.addresses = addresses;
+//	}
+//
+//	public List<PhoneNumber> getPhoneNumbers() {
+//		return phoneNumbers;
+//	}
+//
+//	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+//		this.phoneNumbers = phoneNumbers;
+//	}
 
 	
 }

@@ -24,7 +24,7 @@ public class RolodexApiController {
 	private AddressRepository addressRepo;
 	private PhoneNumberRepository phonenoRepo;
 	
-	public RolodexApiController(CardRepository cardRepo) {
+	public RolodexApiController(CardRepository cardRepo, AddressRepository addressRepo, PhoneNumberRepository phonenoRepo) {
 		this.cardRepo = cardRepo;
 		this.addressRepo = addressRepo;
 		this.phonenoRepo = phonenoRepo;
