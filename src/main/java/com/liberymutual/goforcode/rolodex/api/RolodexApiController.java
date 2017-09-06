@@ -67,17 +67,17 @@ public class RolodexApiController {
 
     @PostMapping("")
     public Card create(@RequestBody Card card) {
-        return cardRepo.save(card);
+        return cardRepo.save(card); 
     }
 
     @GetMapping("{id}")
-    public Card getOne(@PathVariable long id) {
+    public Card getOne(@PathVariable long id) throws StuffNotFoundException {
         Card card = cardRepo.findOne(id);
         return card;
     }
 
     @PutMapping("{id}")
-    public Card update(@RequestBody Card card, @PathVariable long id) {
+    public Card update(@RequestBody Card card, @PathVariable long id) throws StuffNotFoundException {
         card.setId(id);
         return cardRepo.save(card);
     }
