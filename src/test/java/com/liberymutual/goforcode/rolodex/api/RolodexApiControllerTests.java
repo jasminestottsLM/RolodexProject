@@ -16,17 +16,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.liberymutual.goforcode.rolodex.models.Card;
+import com.liberymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.liberymutual.goforcode.rolodex.repositories.CardRepository;
+import com.liberymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 public class RolodexApiControllerTests {
 
 	private CardRepository cardRepo;
+	private AddressRepository addressRepo;
+	private PhoneNumberRepository phonenoRepo;
 	private RolodexApiController controller;
 	
 	@Before
 	public void setUp() {
 		cardRepo = mock(CardRepository.class);
-		controller = new RolodexApiController(cardRepo);
+		controller = new RolodexApiController(cardRepo, addressRepo, phonenoRepo);
 	}
 	
 	@Test
