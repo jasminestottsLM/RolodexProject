@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.liberymutual.goforcode.rolodex.models.Card;
+import com.liberymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.liberymutual.goforcode.rolodex.repositories.CardRepository;
+import com.liberymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 import io.swagger.annotations.Api;
 
@@ -19,9 +21,13 @@ import io.swagger.annotations.Api;
 public class RolodexApiController {
 
 	private CardRepository cardRepo;
+	private AddressRepository addressRepo;
+	private PhoneNumberRepository phonenoRepo;
 	
 	public RolodexApiController(CardRepository cardRepo) {
 		this.cardRepo = cardRepo;
+		this.addressRepo = addressRepo;
+		this.phonenoRepo = phonenoRepo;
 		
 		Card card = new Card();
         card.setFirstName("Ferg");

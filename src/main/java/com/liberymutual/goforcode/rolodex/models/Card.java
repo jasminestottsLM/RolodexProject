@@ -43,10 +43,10 @@ public class Card {
 	@Column(length=255, nullable = true)
 	private String companyName;
 	
-	@OneToMany
+	@OneToMany(mappedBy="card")
 	private List<Address> addresses;
 	
-	@OneToMany
+	@OneToMany(mappedBy="card")
 	private List<PhoneNumber> phoneNumbers;
 
 	public Long getId() {
