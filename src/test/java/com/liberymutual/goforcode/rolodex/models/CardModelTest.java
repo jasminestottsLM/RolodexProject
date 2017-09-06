@@ -9,8 +9,6 @@ public class CardModelTest {
     public void test_all_gets_and_sets() {
         new BeanTester().testBean(Card.class);
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 5f05e06aea5f2b74c8fd1f0d30cea2ba7852a152
+

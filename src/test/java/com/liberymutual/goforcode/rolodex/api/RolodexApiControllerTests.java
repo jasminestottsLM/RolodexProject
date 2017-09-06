@@ -33,8 +33,6 @@ public class RolodexApiControllerTests {
 		verify(cardRepo).save(card);
 		assertThat(controller.create(actualCard)).isSameAs(card);
 	}
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 5f05e06aea5f2b74c8fd1f0d30cea2ba7852a152
+
