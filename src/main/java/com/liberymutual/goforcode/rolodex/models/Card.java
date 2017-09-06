@@ -48,15 +48,6 @@ public class Card {
 	@OneToMany(mappedBy="card")
 	private List<PhoneNumber> phoneNumbers;
 
-	public Card () {
-	}
-	
-	public Card (Long id, String firstName, String lastName) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	
 	
 	public Long getId() {
 		return id;

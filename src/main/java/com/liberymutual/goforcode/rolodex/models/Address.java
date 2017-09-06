@@ -47,14 +47,6 @@ public class Address {
 	private Card card;
 	
 	
-	public Address () {
-	}
-	
-	public Address (String street, String type) {
-		this.street = street;
-		this.type = type;
-	}
-	
 	
 	public Long getId() {
 		return id;

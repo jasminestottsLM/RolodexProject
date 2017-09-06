@@ -35,15 +35,7 @@ public class PhoneNumber {
 	private Card card;
 	
 	
-	public PhoneNumber () {
-	}
-	
-	public PhoneNumber (String phoneNumber, String type) {
-		this.phoneNumber = phoneNumber;
-		this.type = type;
-	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
