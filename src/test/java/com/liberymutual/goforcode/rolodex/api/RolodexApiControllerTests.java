@@ -24,13 +24,13 @@ public class RolodexApiControllerTests {
 
 	private CardRepository cardRepo;
 	private AddressRepository addressRepo;
-	private PhoneNumberRepository phonenoRepo;
+	private PhoneNumberRepository phoneRepo;
 	private RolodexApiController controller;
 	
 	@Before
 	public void setUp() {
 		cardRepo = mock(CardRepository.class);
-		controller = new RolodexApiController(cardRepo, addressRepo, phonenoRepo);
+		controller = new RolodexApiController(cardRepo, addressRepo, phoneRepo);
 	}
 	
 	@Test
