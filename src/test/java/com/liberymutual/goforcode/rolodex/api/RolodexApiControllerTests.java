@@ -35,6 +35,33 @@ public class RolodexApiControllerTests {
         cardRepo = mock(CardRepository.class);
         controller = new RolodexApiController(cardRepo, addressRepo, phoneRepo);
     }
+    
+    @Test
+    public void test_getOne_returns_Card_from_repo() throws StuffNotFoundException {
+        Card card = new Card();
+        when(cardRepo.findOne(7l)).thenReturn(card);
+        Card actual = controller.getOne(7l);
+        assertThat(actual).isSameAs(card);
+        verify(cardRepo).findOne(7l);
+    }
+    
+    @Test
+    public void test_delete_returns_card_deleted_when_found() {
+        Card card = new Card();
+        when(cardRepo.findOne(4l)).thenReturn(card);
+        Card actual = controller.deleteOne(4l);
+        assertThat(card).isSameAs(actual);
+        verify(cardRepo).delete(4l);
+        verify(cardRepo).findOne(4l);
+    }
+    
+    @Test
+    public void test_delete_throws_ERDA() throws StuffNotFoundException {
+        when(cardRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
+        Card actual = controller.deleteOne(4l);
+        assertThat(actual).isNull();
+        verify(cardRepo).findOne(4l);
+    }
 
     @Test
     public void test_get_all() {
