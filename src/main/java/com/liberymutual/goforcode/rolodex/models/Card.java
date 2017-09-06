@@ -22,9 +22,10 @@ public class Card {
     public Card () {
 	}
 	
-	public Card (Long id, String firstName, String lastName) {
+	public Card (Long id, String firstName, String lastName, String title) {
 		this.id = id;
 		this.firstName = firstName;
+		this.title = title;
 		this.lastName = lastName;
 	}
     
@@ -55,7 +56,7 @@ public class Card {
     private List<PhoneNumber> phoneNumbers;
 
     public void addAddress(Address address) {
-        if (address == null) {
+        if (address == null) { 
             addresses = new ArrayList<Address>();
         }
         addresses.add(address);

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.liberymutual.goforcode.rolodex.models.Address;
 import com.liberymutual.goforcode.rolodex.models.Card;
 import com.liberymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.liberymutual.goforcode.rolodex.repositories.CardRepository;
@@ -33,6 +34,7 @@ public class RolodexApiControllerTests {
     @Before
     public void setUp() {
         cardRepo = mock(CardRepository.class);
+        addressRepo = mock(AddressRepository.class);
         controller = new RolodexApiController(cardRepo, addressRepo, phoneRepo);
     }
     
@@ -86,4 +88,30 @@ public class RolodexApiControllerTests {
         assertThat(controller.create(actualCard)).isSameAs(card);
     }
 
+    @Test
+    public void test_constructor_for_card() {
+    	Card card = new Card(1l, "Serena", "Zywicki", "Is Awesome");
+    	
+    	assertThat(card.getId()).isSameAs(1l);
+    	assertThat(card.getFirstName()).isSameAs("Serena");
+    	assertThat(card.getLastName()).isSameAs("Zywicki");
+    	assertThat(card.getTitle()).isSameAs("Is Awesome");
+    }
+    
+//    @Test
+//    public void add_Address_sets_Address() {
+//    	Card card = new Card();
+//    	ArrayList<Address> addresses = new ArrayList<Address>();
+//    	Address address = new Address();
+//    	addresses.add(address);
+//    	
+//    	card.addAddress(address);
+//    	
+//    	assertThat(card.getAddresses()).contains(address);
+//    }
+//    
+    @Test
+    public void test_update_actually_updates_card() {
+    	
+    }
 }
