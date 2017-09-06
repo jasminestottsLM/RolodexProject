@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
@@ -23,18 +24,23 @@ public class Address {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 	
+	@JsonProperty("address_street")
 	@Column(length=255, nullable = false)
 	private String street;
 	
+	@JsonProperty("address_city")
 	@Column(length=75, nullable = false)
 	private String city;
 	
+	@JsonProperty("address_state")
 	@Column(length=2, nullable = false)
 	private String state;
 	
+	@JsonProperty("address_zip")
 	@Column(length=5, nullable = false)
 	private String zip;
 	
+	@JsonProperty("address_type")
 	@Column(length=75, nullable = false)
 	private String type;
 

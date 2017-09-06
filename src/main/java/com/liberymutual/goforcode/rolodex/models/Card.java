@@ -35,17 +35,19 @@ public class Card {
 	@Column(length=75, nullable = false)
 	private String lastName;
 	
+	@JsonProperty("person_title")
 	@Column(length=75, nullable = false)
 	private String title; 
-			
+	
+	@JsonProperty("person_co")
 	@Column(length=255, nullable = true)
 	private String companyName;
 	
-//	@OneToMany
-//	private List<Address> addresses;
-//	
-//	@OneToMany
-//	private List<PhoneNumber> phoneNumbers;
+	@OneToMany
+	private List<Address> addresses;
+	
+	@OneToMany
+	private List<PhoneNumber> phoneNumbers;
 
 	public Long getId() {
 		return id;
@@ -87,21 +89,21 @@ public class Card {
 		this.companyName = companyName;
 	}
 
-//	public List<Address> getAddresses() {
-//		return addresses;
-//	}
-//
-//	public void setAddresses(List<Address> addresses) {
-//		this.addresses = addresses;
-//	}
-//
-//	public List<PhoneNumber> getPhoneNumbers() {
-//		return phoneNumbers;
-//	}
-//
-//	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-//		this.phoneNumbers = phoneNumbers;
-//	}
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public List<PhoneNumber> getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
 
 	
 }

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
@@ -22,9 +23,11 @@ public class PhoneNumber {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 	
+	@JsonProperty("phone_number")
 	@Column(length=5, nullable = false)
 	private String phoneNumber;
 	
+	@JsonProperty("phone_type")
 	@Column(length=75, nullable = false)
 	private String type;
 
