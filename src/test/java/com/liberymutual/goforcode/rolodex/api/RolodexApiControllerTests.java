@@ -6,6 +6,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -44,5 +47,31 @@ public class RolodexApiControllerTests {
 		assertThat(controller.create(actualCard)).isSameAs(card);
 	}
 
+	@Test
+	public void test_getAll() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card());
+		cards.add(new Card());
+		when(cardRepo.findAll()).thenReturn(cards);
+		
+		List<Card> actualCards = controller.getAll();
+		
+		assertThat(actualCards.size()).isEqualTo(2);
+		assertThat(actualCards.get(0)).isSameAs(cards.get(0));
+		assertThat(actualCards.get(1)).isSameAs(cards.get(1));
+		verify(cardRepo).findAll();
+	}
+	
+	@Test
+	public void test_getOne() throws StuffNotFoundException {
+		Card testCard = new Card();
+		when(cardRepo.findOne(1l)).thenReturn(testCard);
+		
+		Card actual = controller.getOne(11);
+		
+		assertThat(actual).isSameAs(testCard);
+		verify(cardRepo).findOne(1l);
+	}
+	
 }
 
