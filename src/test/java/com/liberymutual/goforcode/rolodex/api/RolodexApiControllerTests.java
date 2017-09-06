@@ -23,6 +23,7 @@ import com.liberymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.liberymutual.goforcode.rolodex.repositories.CardRepository;
 import com.liberymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
+<<<<<<< HEAD
 public class RolodexApiControllerTests {
 
 	private CardRepository cardRepo;
@@ -74,4 +75,42 @@ public class RolodexApiControllerTests {
 	}
 	
 }
+=======
+public class RolodexApiControllerTests { 
 
+    private CardRepository cardRepo;
+    private AddressRepository addressRepo;
+    private PhoneNumberRepository phoneRepo;
+    private RolodexApiController controller;
+
+    @Before
+    public void setUp() {
+        cardRepo = mock(CardRepository.class);
+        controller = new RolodexApiController(cardRepo, addressRepo, phoneRepo);
+    }
+
+    @Test
+    public void test_get_all() {
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card());
+        cards.add(new Card());
+        when(cardRepo.findAll()).thenReturn(cards);
+        List<Card> actualCards = controller.getAll();
+        assertThat(actualCards.size()).isEqualTo(2);
+        assertThat(actualCards.get(0)).isSameAs(cards.get(0));
+        verify(cardRepo).findAll();
+    }
+>>>>>>> 58423345d1dcb4d5a0d3b1ebef083b07e06b2491
+
+    @Test
+    public void test_create_adds_a_card_record() {
+        Card card = new Card();
+        when(cardRepo.save(card)).thenReturn(card);
+
+        Card actualCard = controller.create(card);
+
+        verify(cardRepo).save(card);
+        assertThat(controller.create(actualCard)).isSameAs(card);
+    }
+
+}
