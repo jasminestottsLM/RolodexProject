@@ -9,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import org.apache.tomcat.jni.Address;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(
@@ -25,9 +27,11 @@ public class Card {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 	
+	@JsonProperty("first_name")
 	@Column(length=75, nullable = false)
 	private String firstName;
 	
+	@JsonProperty("last_name")
 	@Column(length=75, nullable = false)
 	private String lastName;
 	
@@ -37,11 +41,11 @@ public class Card {
 	@Column(length=255, nullable = true)
 	private String companyName;
 	
-	@OneToMany
-	private List<Address> addresses;
-	
-	@OneToMany
-	private List<PhoneNumber> phoneNumbers;
+//	@OneToMany
+//	private List<Address> addresses;
+//	
+//	@OneToMany
+//	private List<PhoneNumber> phoneNumbers;
 
 	public Long getId() {
 		return id;
@@ -83,21 +87,21 @@ public class Card {
 		this.companyName = companyName;
 	}
 
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public List<PhoneNumber> getPhoneNumbers() {
-		return phoneNumbers;
-	}
-
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
-	}
+//	public List<Address> getAddresses() {
+//		return addresses;
+//	}
+//
+//	public void setAddresses(List<Address> addresses) {
+//		this.addresses = addresses;
+//	}
+//
+//	public List<PhoneNumber> getPhoneNumbers() {
+//		return phoneNumbers;
+//	}
+//
+//	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+//		this.phoneNumbers = phoneNumbers;
+//	}
 
 	
 }

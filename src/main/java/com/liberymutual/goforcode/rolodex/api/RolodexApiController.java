@@ -22,6 +22,30 @@ public class RolodexApiController {
 	
 	public RolodexApiController(CardRepository cardRepo) {
 		this.cardRepo = cardRepo;
+		
+		Card card = new Card();
+        card.setFirstName("Ferg");
+        card.setLastName("Fergusson");
+        card.setTitle("FergsTitle");
+        cardRepo.save(card);
+        
+        card = new Card();
+        card.setFirstName("Walt");
+        card.setLastName("Waltington");
+        card.setTitle("WaltsTitle");
+        cardRepo.save(card);
+        
+        card = new Card();
+        card.setFirstName("Branch");
+        card.setLastName("Brancherson");
+        card.setTitle("BranchsTitle");
+        cardRepo.save(card);
+        
+        card = new Card();
+        card.setFirstName("Vic");
+        card.setLastName("Victoria");
+        card.setTitle("VicsTitle");
+        cardRepo.save(card);
 	}
 	
 	@GetMapping("")
