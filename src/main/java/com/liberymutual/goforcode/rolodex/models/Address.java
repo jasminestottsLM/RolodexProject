@@ -1,6 +1,5 @@
 package com.liberymutual.goforcode.rolodex.models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,6 +45,16 @@ public class Address {
 
 	@ManyToOne
 	private Card card;
+	
+	
+	public Address () {
+	}
+	
+	public Address (String street, String type) {
+		this.street = street;
+		this.type = type;
+	}
+	
 	
 	public Long getId() {
 		return id;

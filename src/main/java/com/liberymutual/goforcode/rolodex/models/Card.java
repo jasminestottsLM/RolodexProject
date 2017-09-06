@@ -19,6 +19,15 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 public class Card {
 
+    public Card () {
+	}
+	
+	public Card (Long id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
