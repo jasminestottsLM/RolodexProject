@@ -100,18 +100,8 @@ public class RolodexApiControllerTests {
     	assertThat(card.getTitle()).isSameAs("Is Awesome");
     }
     
-//    @Test
-//    public void add_Address_sets_Address() {
-//    	Card card = new Card();
-//    	ArrayList<Address> addresses = new ArrayList<Address>();
-//    	Address address = new Address();
-//    	addresses.add(address);
-//    	
-//    	card.addAddress(address);
-//    	
-//    	assertThat(card.getAddresses()).contains(address);
-//    }
-//    
+    
+    
     @Test
     public void test_update_actually_updates_card() {
     	
