@@ -1,6 +1,7 @@
 package com.libertymutual.goforcode.rolodex.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -140,33 +141,29 @@ public class RolodexApiControllerTests {
     }
 	
 	@Test
-    	public void test_delete_returns_address_deleted_when_found() {
-		Card card = new Card();
-		Address address = new Address();
-		when(cardRepo.findOne(2l)).thenReturn(card);
-		when(addressRepo.findOne(4l)).thenReturn(address);
-		
-		Address actual = controller.deleteAddress(2l, 4l);
-		
-		assertThat(actual).isSameAs(address);
-		verify(addressRepo).delete(4l);
-		verify(addressRepo).findOne(4l);
-		
+    public void test_delete_returns_address_deleted_when_found() {
+     Card card = new Card();
+     Address address = new Address();
+     when(cardRepo.findOne(2l)).thenReturn(card);
+     when(addressRepo.findOne(4l)).thenReturn(address);
+     
+     Address actual = controller.deleteAddress(2l, 4l);
+     
+     assertThat(actual).isSameAs(address);
+     verify(addressRepo).delete(4l);
+     verify(addressRepo).findOne(4l);
+	
+}
+	
+    @Test
+    public void test_delete_address_throws_ERDA() throws StuffNotFoundException {
+        when(addressRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
+        Address actual = controller.deleteAddress(2l, 4l);
+        assertThat(actual).isNull();
+        verify(addressRepo).findOne(4l);
     }
-	
-//	@Test 
-//	public void test_that_null_is_returned_one_findOne_throws_EmptyResultDataAccessException() throws StuffNotFoundException {
-//		// Arrange
-//		when(addressRepo.findOne(8l)).thenThrow(new EmptyResultDataAccessException(0));
-//		
-//		// Act
-//		Card actual = controller.deleteOne(8l);
-//		
-//		// Assert
-//		assertThat(actual).isNull();
-//		verify(addressRepo).delete(8l);
-//	}
-	
+
+
 	@Test
 	public void test_delete_returns_phoneNumber_deleted_when_found() {
 	Card card = new Card();
@@ -180,5 +177,16 @@ public class RolodexApiControllerTests {
 	verify(phoneRepo).delete(4l);
 	verify(phoneRepo).findOne(4l);
 	
+}    
+	
+	@Test
+    public void test_delete_phone_throws_ERDA() throws StuffNotFoundException {
+    when(phoneRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
+    PhoneNumber actual = controller.deletePhoneNumber(2l, 4l);
+    assertThat(actual).isNull();
+    verify(phoneRepo).findOne(4l);
 }
+	
+	
+	
 }
