@@ -82,11 +82,18 @@ public class RolodexApiController {
         return cardRepo.save(card);
     }
 
+    @PutMapping("{pho_id}")
+    public PhoneNumber update(@RequestBody PhoneNumber phone, @PathVariable long id) throws StuffNotFoundException {
+        phone.setId(id);
+        return phoneRepo.save(phone);
+    }
+
+    
     @DeleteMapping("{id}")
     public Card deleteOne(@PathVariable long id) {
         try {
             Card card = cardRepo.findOne(id);
-            cardRepo.delete(id);
+            cardRepo.delete(id); 
             return card;
         } catch (EmptyResultDataAccessException erdae) {
             return null;
