@@ -28,6 +28,7 @@ import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
 import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 
+
 public class RolodexApiControllerTests { 
 
     private CardRepository cardRepo;
@@ -152,6 +153,19 @@ public class RolodexApiControllerTests {
 		verify(addressRepo).findOne(4l);
 		
     }
+	
+//	@Test 
+//	public void test_that_null_is_returned_one_findOne_throws_EmptyResultDataAccessException() throws StuffNotFoundException {
+//		// Arrange
+//		when(addressRepo.findOne(8l)).thenThrow(new EmptyResultDataAccessException(0));
+//		
+//		// Act
+//		Card actual = controller.deleteOne(8l);
+//		
+//		// Assert
+//		assertThat(actual).isNull();
+//		verify(addressRepo).delete(8l);
+//	}
 	
 	@Test
 	public void test_delete_returns_phoneNumber_deleted_when_found() {
