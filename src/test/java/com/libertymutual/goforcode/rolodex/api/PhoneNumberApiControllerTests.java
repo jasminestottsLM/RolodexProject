@@ -30,89 +30,89 @@ import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 
 
-public class RolodexApiControllerTests { 
+public class PhoneNumberApiControllerTests { 
 
     private CardRepository cardRepo;
     private AddressRepository addressRepo;
     private PhoneNumberRepository phoneRepo;
-    private RolodexApiController controller;
+    private PhoneNumberApiController controller;
 
     @Before
     public void setUp() {
         cardRepo = mock(CardRepository.class);
         addressRepo = mock(AddressRepository.class);
         phoneRepo = mock(PhoneNumberRepository.class);
-        controller = new RolodexApiController(cardRepo, addressRepo, phoneRepo);
+        controller = new PhoneNumberApiController(phoneRepo, cardRepo);
     }
     
-    @Test
-    public void test_getOne_returns_Card_from_repo() throws StuffNotFoundException {
-        Card card = new Card();
-        when(cardRepo.findOne(7l)).thenReturn(card);
-        Card actual = controller.getOne(7l);
-        assertThat(actual).isSameAs(card);
-        verify(cardRepo).findOne(7l);
-    }
+//    @Test
+//    public void test_getOne_returns_Card_from_repo() throws StuffNotFoundException {
+//        Card card = new Card();
+//        when(cardRepo.findOne(7l)).thenReturn(card);
+//        Card actual = controller.getOne(7l);
+//        assertThat(actual).isSameAs(card);
+//        verify(cardRepo).findOne(7l);
+//    }
     
-    @Test
-    public void test_delete_returns_card_deleted_when_found() {
-        Card card = new Card();
-        when(cardRepo.findOne(4l)).thenReturn(card);
-        Card actual = controller.deleteOne(4l);
-        assertThat(card).isSameAs(actual);
-        verify(cardRepo).delete(4l);
-        verify(cardRepo).findOne(4l);
-    }
+//    @Test
+//    public void test_delete_returns_card_deleted_when_found() {
+//        Card card = new Card();
+//        when(cardRepo.findOne(4l)).thenReturn(card);
+//        Card actual = controller.deleteOne(4l);
+//        assertThat(card).isSameAs(actual);
+//        verify(cardRepo).delete(4l);
+//        verify(cardRepo).findOne(4l);
+//    }
     
-    @Test
-    public void test_delete_throws_ERDA() throws StuffNotFoundException {
-        when(cardRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
-        Card actual = controller.deleteOne(4l);
-        assertThat(actual).isNull();
-        verify(cardRepo).findOne(4l);
-    }
+//    @Test
+//    public void test_delete_throws_ERDA() throws StuffNotFoundException {
+//        when(cardRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
+//        Card actual = controller.deleteOne(4l);
+//        assertThat(actual).isNull();
+//        verify(cardRepo).findOne(4l);
+//    }
 
-    @Test
-    public void test_get_all() {
-        ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new Card());
-        cards.add(new Card());
-        when(cardRepo.findAll()).thenReturn(cards);
-        List<Card> actualCards = controller.getAll();
-        assertThat(actualCards.size()).isEqualTo(2);
-        assertThat(actualCards.get(0)).isSameAs(cards.get(0));
-        verify(cardRepo).findAll();
-    }
+//    @Test
+//    public void test_get_all() {
+//        ArrayList<Card> cards = new ArrayList<Card>();
+//        cards.add(new Card());
+//        cards.add(new Card());
+//        when(cardRepo.findAll()).thenReturn(cards);
+//        List<Card> actualCards = controller.getAll();
+//        assertThat(actualCards.size()).isEqualTo(2);
+//        assertThat(actualCards.get(0)).isSameAs(cards.get(0));
+//        verify(cardRepo).findAll();
+//    }
 
-    @Test
-    public void test_create_adds_a_card_record() {
-        Card card = new Card();
-        when(cardRepo.save(card)).thenReturn(card);
+//    @Test
+//    public void test_create_adds_a_card_record() {
+//        Card card = new Card();
+//        when(cardRepo.save(card)).thenReturn(card);
+//
+//        Card actualCard = controller.create(card);
+//
+//        verify(cardRepo).save(card);
+//        assertThat(controller.create(actualCard)).isSameAs(card);
+//    }
 
-        Card actualCard = controller.create(card);
-
-        verify(cardRepo).save(card);
-        assertThat(controller.create(actualCard)).isSameAs(card);
-    }
-
-    @Test
-    public void test_constructor_for_card() {
-    	Card card = new Card(1l, "Serena", "Zywicki", "Is Awesome");
-    	
-    	assertThat(card.getId()).isSameAs(1l);
-    	assertThat(card.getFirstName()).isSameAs("Serena");
-    	assertThat(card.getLastName()).isSameAs("Zywicki");
-    	assertThat(card.getTitle()).isSameAs("Is Awesome");
-    }
+//    @Test
+//    public void test_constructor_for_card() {
+//    	Card card = new Card(1l, "Serena", "Zywicki", "Is Awesome");
+//    	
+//    	assertThat(card.getId()).isSameAs(1l);
+//    	assertThat(card.getFirstName()).isSameAs("Serena");
+//    	assertThat(card.getLastName()).isSameAs("Zywicki");
+//    	assertThat(card.getTitle()).isSameAs("Is Awesome");
+//    }
     
-    @Test
-    public void test_update_returns_card_with_changes_made() throws StuffNotFoundException {
-    	Card card = new Card();
-    	when(cardRepo.save(card)).thenReturn(card);
-    	Card actual = controller.update(card, 3l);
-    	verify(cardRepo).save(card);
-    	assertThat(actual).isSameAs(card);
-    }
+//    @Test
+//    public void test_update_returns_card_with_changes_made() throws StuffNotFoundException {
+//    	Card card = new Card();
+//    	when(cardRepo.save(card)).thenReturn(card);
+//    	Card actual = controller.update(card, 3l);
+//    	verify(cardRepo).save(card);
+//    	assertThat(actual).isSameAs(card);
+//    }
     
 //    @Test
 //    public void test_update__phone_returns_phone_with_changes_made() throws StuffNotFoundException {
@@ -152,7 +152,7 @@ public class RolodexApiControllerTests {
 //    	when(cardRepo.findOne(4l)).thenReturn(card);
 //    	when(phoneRepo.findOne(4l)).thenReturn(phone);
 //    	
-//    	Card actualCard = controller.associateAPhoneNumber(4l, phone);
+//    	Card actualCard = controller.create(4l, phone);
 //    	
 //    	verify(cardRepo).findOne(4l);
 //    	assertThat(card).isSameAs(actualCard);
@@ -182,29 +182,29 @@ public class RolodexApiControllerTests {
 //    }
 
 
-//	@Test
-//	public void test_delete_returns_phoneNumber_deleted_when_found() {
-//	Card card = new Card();
-//	PhoneNumber phoneNumber = new PhoneNumber();
-//	when(cardRepo.findOne(2l)).thenReturn(card);
-//	when(phoneRepo.findOne(4l)).thenReturn(phoneNumber);
-//	
-//	PhoneNumber actual = controller.deletePhoneNumber(2l, 4l);
-//	
-//	assertThat(actual).isSameAs(phoneNumber);
-//	verify(phoneRepo).delete(4l);
-//	verify(phoneRepo).findOne(4l);
-//	
-//}    
+	@Test
+	public void test_delete_returns_phoneNumber_deleted_when_found() {
+	Card card = new Card();
+	PhoneNumber phoneNumber = new PhoneNumber();
+	when(cardRepo.findOne(2l)).thenReturn(card);
+	when(phoneRepo.findOne(4l)).thenReturn(phoneNumber);
 	
-//	@Test
-//    public void test_delete_phone_throws_ERDA() throws StuffNotFoundException {
-//    when(phoneRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
-//    PhoneNumber actual = controller.deletePhoneNumber(2l, 4l);
-//    assertThat(actual).isNull();
-//    verify(phoneRepo).findOne(4l);
-//}
-//	
+	PhoneNumber actual = controller.deletePhone(2l, 4l);
+	
+	assertThat(actual).isSameAs(phoneNumber);
+	verify(phoneRepo).delete(4l);
+	verify(phoneRepo).findOne(4l);
+	
+}    
+	
+	@Test
+    public void test_delete_phone_throws_ERDA() throws StuffNotFoundException {
+    when(phoneRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
+    PhoneNumber actual = controller.deletePhone(2l, 4l);
+    assertThat(actual).isNull();
+    verify(phoneRepo).findOne(4l);
+}
+	
 	
 	
 }
