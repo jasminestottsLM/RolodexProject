@@ -158,28 +158,28 @@ public class RolodexApiControllerTests {
     	assertThat(card).isSameAs(actualCard);
     }
 	
-	@Test
-    public void test_delete_returns_address_deleted_when_found() {
-     Card card = new Card();
-     Address address = new Address();
-     when(cardRepo.findOne(2l)).thenReturn(card);
-     when(addressRepo.findOne(4l)).thenReturn(address);
-     
-     Address actual = controller.deleteAddress(2l, 4l);
-     
-     assertThat(actual).isSameAs(address);
-     verify(addressRepo).delete(4l);
-     verify(addressRepo).findOne(4l);
-	
-}
-	
-    @Test
-    public void test_delete_address_throws_ERDA() throws StuffNotFoundException {
-        when(addressRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
-        Address actual = controller.deleteAddress(2l, 4l);
-        assertThat(actual).isNull();
-        verify(addressRepo).findOne(4l);
-    }
+//	@Test
+//    public void test_delete_returns_address_deleted_when_found() {
+//     Card card = new Card();
+//     Address address = new Address();
+//     when(cardRepo.findOne(2l)).thenReturn(card);
+//     when(addressRepo.findOne(4l)).thenReturn(address);
+//     
+//     Address actual = controller.deleteAddress(2l, 4l);
+//     
+//     assertThat(actual).isSameAs(address);
+//     verify(addressRepo).delete(4l);
+//     verify(addressRepo).findOne(4l);
+//	
+//}
+//	
+//    @Test
+//    public void test_delete_address_throws_ERDA() throws StuffNotFoundException {
+//        when(addressRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
+//        Address actual = controller.deleteAddress(2l, 4l);
+//        assertThat(actual).isNull();
+//        verify(addressRepo).findOne(4l);
+//    }
 
 
 	@Test

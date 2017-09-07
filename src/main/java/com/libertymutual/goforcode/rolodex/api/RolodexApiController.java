@@ -69,6 +69,11 @@ public class RolodexApiController {
     public Card create(@RequestBody Card card) {
         return cardRepo.save(card); 
     }
+    
+//    @PostMapping("/addresses")
+//    public Address create(@RequestBody Address address) {
+//        return addressRepo.save(address); 
+//    }
 
     @GetMapping("{id}")
     public Card getOne(@PathVariable long id) throws StuffNotFoundException {
@@ -81,18 +86,18 @@ public class RolodexApiController {
         card.setId(id);
         return cardRepo.save(card);
     }
-
+    
     @PutMapping("{id}/phoneNumbers/{pho_id}")
     public PhoneNumber updatePhone(@RequestBody PhoneNumber phone, @PathVariable long id) throws StuffNotFoundException {
         phone.setId(id);
         return phoneRepo.save(phone);
     }
 
-    @PutMapping("{id}/addresses/{add_id}")
-    public Address updateAddress(@RequestBody Address address, @PathVariable long id) throws StuffNotFoundException {
-        address.setId(id);
-        return addressRepo.save(address);
-    }
+//    @PutMapping("{id}/addresses/{add_id}")
+//    public Address updateAddress(@RequestBody Address address, @PathVariable long id) throws StuffNotFoundException {
+//        address.setId(id);
+//        return addressRepo.save(address);
+//    }
     
     @DeleteMapping("{id}")
     public Card deleteOne(@PathVariable long id) {
@@ -105,16 +110,6 @@ public class RolodexApiController {
         }
     }
     
-    @DeleteMapping("{id}/addresses/{add_id}")
-    public Address deleteAddress(@PathVariable long id, @PathVariable long add_id) {
-        try {
-            Address address = addressRepo.findOne(add_id);
-            addressRepo.delete(add_id);
-            return address;
-        } catch (EmptyResultDataAccessException erdae) {
-            return null;
-        }
-    }
     
     @DeleteMapping("{id}/phoneNumbers/{pho_id}")
     public PhoneNumber deletePhoneNumber(@PathVariable long id, @PathVariable long pho_id) {
@@ -127,14 +122,14 @@ public class RolodexApiController {
         }
     }
 
-    @PostMapping("{id}/addresses")
-    public Card associateAnAddress(@PathVariable long cardId, @RequestBody Address address) {
-        Card card = cardRepo.findOne(cardId);
-        address = addressRepo.findOne(address.getId());
-        card.addAddress(address);
-        cardRepo.save(card);
-        return card;
-    }
+//    @PostMapping("{id}/addresses")
+//    public Card associateAnAddress(@PathVariable long cardId, @RequestBody Address address) {
+//        Card card = cardRepo.findOne(cardId);     
+//        address = addressRepo.findOne(address.getId());
+//        card.addAddress(address);
+//        cardRepo.save(card);
+//        return card;
+//    }
 
     @PostMapping("{id}/phones")
     public Card associateAPhoneNumber(@PathVariable long cardId, @RequestBody PhoneNumber phoneNumber) {
