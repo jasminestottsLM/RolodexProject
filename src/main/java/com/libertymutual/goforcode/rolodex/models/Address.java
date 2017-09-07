@@ -45,7 +45,7 @@ public class Address {
 
 	@ManyToOne
 	private Card card;
-	
+	 
 	
 	
 	public Long getId() {

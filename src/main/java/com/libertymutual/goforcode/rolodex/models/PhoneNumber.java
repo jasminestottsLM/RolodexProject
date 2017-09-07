@@ -59,4 +59,12 @@ public class PhoneNumber {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
 }

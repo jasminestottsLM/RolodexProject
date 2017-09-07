@@ -15,65 +15,67 @@ import org.springframework.web.bind.annotation.RestController;
 import com.libertymutual.goforcode.rolodex.api.StuffNotFoundException;
 import com.libertymutual.goforcode.rolodex.models.Address;
 import com.libertymutual.goforcode.rolodex.models.Card;
+import com.libertymutual.goforcode.rolodex.models.PhoneNumber;
 import com.libertymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
+import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 import io.swagger.annotations.Api;
 
-@RequestMapping("/cards/{id}/addresses")
-@Api(description = "Create, get, update, and delete addresses.")
+@RequestMapping("/cards/{id}/phones")
+@Api(description = "Create, get, update, and delete phone numbers.")
 @RestController
-public class AddressApiController {
+public class PhoneNumberApiController {
 
-	private AddressRepository addressRepo;
+	private PhoneNumberRepository phoneRepo;
 	private CardRepository cardRepo;
 	
-	public AddressApiController(AddressRepository addressRepo, CardRepository cardRepo) {
-		this.addressRepo = addressRepo;
+	public PhoneNumberApiController(PhoneNumberRepository phoneRepo, CardRepository cardRepo) {
+		this.phoneRepo = phoneRepo;
 		this.cardRepo = cardRepo;
 	}
 
 
 	@GetMapping("")
-	public List<Address> getAll() {
-		return addressRepo.findAll();
+	public List<PhoneNumber> getAll() {
+		return phoneRepo.findAll();
 	}
 
 	
 	@GetMapping("{add_id}")
-	public Address getOne(@PathVariable long id) throws StuffNotFoundException {
-		Address address = addressRepo.findOne(id);
-		if (address == null) {
+	public PhoneNumber getOne(@PathVariable long id) throws StuffNotFoundException {
+		PhoneNumber phone = phoneRepo.findOne(id);
+		if (phone == null) {
 			throw new StuffNotFoundException();
 		}
 
-		return address;
+		return phone;
 	} 
 	   
-	@DeleteMapping("{add_id}")
-    public Address deleteAddress(@PathVariable long id, @PathVariable long add_id) {
+	@DeleteMapping("{pho_id}")
+    public PhoneNumber deletePhone(@PathVariable long id, @PathVariable long pho_id) {
         try {
-            Address address = addressRepo.findOne(add_id);
-            addressRepo.delete(add_id);
-            return address;
+            PhoneNumber phone = phoneRepo.findOne(pho_id);
+            phoneRepo.delete(pho_id);
+            return phone;
         } catch (EmptyResultDataAccessException erdae) {
             return null;
         }
     }
 	
 	@PostMapping("")
-	public Card create(@PathVariable long id, @RequestBody Address address) {
+	public Card create(@PathVariable long id, @RequestBody PhoneNumber phone) {
 		Card card = cardRepo.findOne(id);     
-        card.addAddress(address);
-        address.setCard(card);
-        addressRepo.save(address);
+        card.addPhoneNumber(phone);
+        phone.setCard(card);
+        phoneRepo.save(phone);
         cardRepo.save(card);
         return card; 
 	}  
 	 
-	@PutMapping("{add_id}")
-	public Address update(@RequestBody Address address, @PathVariable long id) {
-		address.setId(id);
-		return addressRepo.save(address);
+	@PutMapping("{pho_id}")
+	public PhoneNumber update(@RequestBody PhoneNumber phone, @PathVariable long id) {
+		phone.setId(id);
+		return phoneRepo.save(phone);
 	}
 }

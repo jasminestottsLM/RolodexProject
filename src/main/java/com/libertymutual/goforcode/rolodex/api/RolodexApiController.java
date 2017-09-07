@@ -90,11 +90,11 @@ public class RolodexApiController {
         return cardRepo.save(card);
     }
     
-    @PutMapping("{id}/phoneNumbers/{pho_id}")
-    public PhoneNumber updatePhone(@RequestBody PhoneNumber phone, @PathVariable long id) throws StuffNotFoundException {
-        phone.setId(id);
-        return phoneRepo.save(phone);
-    }
+//    @PutMapping("{id}/phoneNumbers/{pho_id}")
+//    public PhoneNumber updatePhone(@RequestBody PhoneNumber phone, @PathVariable long id) throws StuffNotFoundException {
+//        phone.setId(id);
+//        return phoneRepo.save(phone);
+//    }
 
 //    @PutMapping("{id}/addresses/{add_id}")
 //    public Address updateAddress(@RequestBody Address address, @PathVariable long id) throws StuffNotFoundException {
@@ -114,16 +114,16 @@ public class RolodexApiController {
     }
     
     
-    @DeleteMapping("{id}/phoneNumbers/{pho_id}")
-    public PhoneNumber deletePhoneNumber(@PathVariable long id, @PathVariable long pho_id) {
-        try { 
-            PhoneNumber phoneNumber = phoneRepo.findOne(pho_id);
-            phoneRepo.delete(pho_id);
-            return phoneNumber;
-        } catch (EmptyResultDataAccessException erdae) {
-            return null;
-        }
-    }
+//    @DeleteMapping("{id}/phoneNumbers/{pho_id}")
+//    public PhoneNumber deletePhoneNumber(@PathVariable long id, @PathVariable long pho_id) {
+//        try { 
+//            PhoneNumber phoneNumber = phoneRepo.findOne(pho_id);
+//            phoneRepo.delete(pho_id);
+//            return phoneNumber;
+//        } catch (EmptyResultDataAccessException erdae) {
+//            return null;
+//        }
+//    }
 
 //    @PostMapping("{cardId}/addresses")
 //    public Card associateAnAddress(@PathVariable long cardId, @RequestBody Address address) {
@@ -134,12 +134,12 @@ public class RolodexApiController {
 //        return card;
 //    }
 
-    @PostMapping("{id}/phones")
-    public Card associateAPhoneNumber(@PathVariable long cardId, @RequestBody PhoneNumber phoneNumber) {
-        Card card = cardRepo.findOne(cardId);
-        phoneNumber = phoneRepo.findOne(phoneNumber.getId());
-        card.addPhoneNumber(phoneNumber);
-        cardRepo.save(card);
-        return card;
-    }
+//    @PostMapping("{id}/phones")
+//    public Card associateAPhoneNumber(@PathVariable long cardId, @RequestBody PhoneNumber phoneNumber) {
+//        Card card = cardRepo.findOne(cardId);
+//        phoneNumber = phoneRepo.findOne(phoneNumber.getId());
+//        card.addPhoneNumber(phoneNumber);
+//        cardRepo.save(card);
+//        return card;
+//    }
 }
