@@ -70,8 +70,11 @@ public class RolodexApiController {
         return cardRepo.save(card); 
     }
     
-//    @PostMapping("/addresses")
-//    public Address create(@RequestBody Address address) {
+//    @PostMapping("{id}/addresses")
+//    public Address create(@PathVariable long id, @RequestBody Address address) {
+//    	Card card = cardRepo.findOne(id);     
+//        card.addAddress(address);
+//        cardRepo.save(card);
 //        return addressRepo.save(address); 
 //    }
 
@@ -122,7 +125,7 @@ public class RolodexApiController {
         }
     }
 
-//    @PostMapping("{id}/addresses")
+//    @PostMapping("{cardId}/addresses")
 //    public Card associateAnAddress(@PathVariable long cardId, @RequestBody Address address) {
 //        Card card = cardRepo.findOne(cardId);     
 //        address = addressRepo.findOne(address.getId());
