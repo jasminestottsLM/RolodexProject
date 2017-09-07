@@ -96,8 +96,8 @@ public class RolodexApiController {
     @DeleteMapping("{id}/addresses/{add_id}")
     public Address deleteAddress(@PathVariable long id, @PathVariable long add_id) {
         try {
-            Address address = addressRepo.findOne(id);
-            addressRepo.delete(id);
+            Address address = addressRepo.findOne(add_id);
+            addressRepo.delete(add_id);
             return address;
         } catch (EmptyResultDataAccessException erdae) {
             return null;
@@ -107,8 +107,8 @@ public class RolodexApiController {
     @DeleteMapping("{id}/phoneNumbers/{pho_id}")
     public PhoneNumber deletePhoneNumber(@PathVariable long id, @PathVariable long pho_id) {
         try { 
-            PhoneNumber phoneNumber = phoneRepo.findOne(id);
-            phoneRepo.delete(id);
+            PhoneNumber phoneNumber = phoneRepo.findOne(pho_id);
+            phoneRepo.delete(pho_id);
             return phoneNumber;
         } catch (EmptyResultDataAccessException erdae) {
             return null;

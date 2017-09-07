@@ -138,18 +138,33 @@ public class RolodexApiControllerTests {
     	assertThat(card).isSameAs(actualCard);
     }
 	
-//	@Test
-//    public void test_delete_returns_address_deleted_when_found() {
-//		Address address = new Address();
-//		Card card = new Card();
-//		when(cardRepo.findOne(2l)).thenReturn(card);
-//		when(addressRepo.findOne(4l)).thenReturn(address);
-//		
-//		Address actual = controller.deleteAddress(2l, 4l);
-//		
-//		assertThat(address).isSameAs(actual);
-//		verify(addressRepo).delete(4l);
-//		verify(addressRepo).findOne(4l);
-//		
-//    }
+	@Test
+    	public void test_delete_returns_address_deleted_when_found() {
+		Card card = new Card();
+		Address address = new Address();
+		when(cardRepo.findOne(2l)).thenReturn(card);
+		when(addressRepo.findOne(4l)).thenReturn(address);
+		
+		Address actual = controller.deleteAddress(2l, 4l);
+		
+		assertThat(actual).isSameAs(address);
+		verify(addressRepo).delete(4l);
+		verify(addressRepo).findOne(4l);
+		
+    }
+	
+	@Test
+	public void test_delete_returns_phoneNumber_deleted_when_found() {
+	Card card = new Card();
+	PhoneNumber phoneNumber = new PhoneNumber();
+	when(cardRepo.findOne(2l)).thenReturn(card);
+	when(phoneRepo.findOne(4l)).thenReturn(phoneNumber);
+	
+	PhoneNumber actual = controller.deletePhoneNumber(2l, 4l);
+	
+	assertThat(actual).isSameAs(phoneNumber);
+	verify(phoneRepo).delete(4l);
+	verify(phoneRepo).findOne(4l);
+	
+}
 }
