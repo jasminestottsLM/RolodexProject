@@ -27,6 +27,7 @@ import com.libertymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
 import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
+
 public class RolodexApiControllerTests { 
 
     private CardRepository cardRepo;
@@ -102,7 +103,14 @@ public class RolodexApiControllerTests {
     	assertThat(card.getTitle()).isSameAs("Is Awesome");
     }
     
-    
+    @Test
+    public void test_update_returns_card_with_changes_made() throws StuffNotFoundException {
+    	Card card = new Card();
+    	when(cardRepo.save(card)).thenReturn(card);
+    	Card actual = controller.update(card, 3l);
+    	verify(cardRepo).save(card);
+    	assertThat(actual).isSameAs(card);
+    }
     
     @Test
     public void add_Address_sets_Address() {
@@ -130,4 +138,18 @@ public class RolodexApiControllerTests {
     	assertThat(card).isSameAs(actualCard);
     }
 	
+//	@Test
+//    public void test_delete_returns_address_deleted_when_found() {
+//		Address address = new Address();
+//		Card card = new Card();
+//		when(cardRepo.findOne(2l)).thenReturn(card);
+//		when(addressRepo.findOne(4l)).thenReturn(address);
+//		
+//		Address actual = controller.deleteAddress(2l, 4l);
+//		
+//		assertThat(address).isSameAs(actual);
+//		verify(addressRepo).delete(4l);
+//		verify(addressRepo).findOne(4l);
+//		
+//    }
 }
