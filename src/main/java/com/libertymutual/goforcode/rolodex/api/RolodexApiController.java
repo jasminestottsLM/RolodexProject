@@ -82,12 +82,17 @@ public class RolodexApiController {
         return cardRepo.save(card);
     }
 
-    @PutMapping("{pho_id}")
-    public PhoneNumber update(@RequestBody PhoneNumber phone, @PathVariable long id) throws StuffNotFoundException {
+    @PutMapping("{id}/phoneNumbers/{pho_id}")
+    public PhoneNumber updatePhone(@RequestBody PhoneNumber phone, @PathVariable long id) throws StuffNotFoundException {
         phone.setId(id);
         return phoneRepo.save(phone);
     }
 
+    @PutMapping("{id}/addresses/{add_id}")
+    public Address updateAddress(@RequestBody Address address, @PathVariable long id) throws StuffNotFoundException {
+        address.setId(id);
+        return addressRepo.save(address);
+    }
     
     @DeleteMapping("{id}")
     public Card deleteOne(@PathVariable long id) {

@@ -118,9 +118,18 @@ public class RolodexApiControllerTests {
     public void test_update__phone_returns_phone_with_changes_made() throws StuffNotFoundException {
     	PhoneNumber phone = new PhoneNumber();
     	when(phoneRepo.save(phone)).thenReturn(phone);
-    	PhoneNumber actual = controller.update(phone, 3l);
+    	PhoneNumber actual = controller.updatePhone(phone, 3l);
     	verify(phoneRepo).save(phone);
     	assertThat(actual).isSameAs(phone);
+    }
+    
+    @Test
+    public void test_update__address_returns_phone_with_changes_made() throws StuffNotFoundException {
+    	Address address = new Address();
+    	when(addressRepo.save(address)).thenReturn(address);
+    	Address actual = controller.updateAddress(address, 3l);
+    	verify(addressRepo).save(address);
+    	assertThat(actual).isSameAs(address);
     }
     
     @Test
