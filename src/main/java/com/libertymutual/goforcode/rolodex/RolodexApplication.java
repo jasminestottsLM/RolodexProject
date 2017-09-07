@@ -1,4 +1,4 @@
-package com.liberymutual.goforcode.rolodex;
+package com.libertymutual.goforcode.rolodex;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

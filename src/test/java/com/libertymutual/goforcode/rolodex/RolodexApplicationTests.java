@@ -1,4 +1,4 @@
-package com.liberymutual.goforcode.rolodex;
+package com.libertymutual.goforcode.rolodex;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

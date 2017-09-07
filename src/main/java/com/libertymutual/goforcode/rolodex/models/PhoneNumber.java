@@ -1,4 +1,4 @@
-package com.liberymutual.goforcode.rolodex.models;
+package com.libertymutual.goforcode.rolodex.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

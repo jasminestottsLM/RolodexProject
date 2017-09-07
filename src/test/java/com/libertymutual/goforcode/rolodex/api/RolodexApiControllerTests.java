@@ -1,4 +1,4 @@
-package com.liberymutual.goforcode.rolodex.api;
+package com.libertymutual.goforcode.rolodex.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.liberymutual.goforcode.rolodex.models.Address;
-import com.liberymutual.goforcode.rolodex.models.Card;
-import com.liberymutual.goforcode.rolodex.repositories.AddressRepository;
-import com.liberymutual.goforcode.rolodex.repositories.CardRepository;
-import com.liberymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
+import com.libertymutual.goforcode.rolodex.api.RolodexApiController;
+import com.libertymutual.goforcode.rolodex.api.StuffNotFoundException;
+import com.libertymutual.goforcode.rolodex.models.Address;
+import com.libertymutual.goforcode.rolodex.models.Card;
+import com.libertymutual.goforcode.rolodex.repositories.AddressRepository;
+import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
+import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 public class RolodexApiControllerTests { 
 

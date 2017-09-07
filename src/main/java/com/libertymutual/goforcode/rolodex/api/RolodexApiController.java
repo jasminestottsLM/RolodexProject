@@ -1,4 +1,4 @@
-package com.liberymutual.goforcode.rolodex.api;
+package com.libertymutual.goforcode.rolodex.api;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.liberymutual.goforcode.rolodex.models.Address;
-import com.liberymutual.goforcode.rolodex.models.Card;
-import com.liberymutual.goforcode.rolodex.models.PhoneNumber;
-import com.liberymutual.goforcode.rolodex.repositories.AddressRepository;
-import com.liberymutual.goforcode.rolodex.repositories.CardRepository;
-import com.liberymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
+import com.libertymutual.goforcode.rolodex.models.Address;
+import com.libertymutual.goforcode.rolodex.models.Card;
+import com.libertymutual.goforcode.rolodex.models.PhoneNumber;
+import com.libertymutual.goforcode.rolodex.repositories.AddressRepository;
+import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
+import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 import io.swagger.annotations.Api;
 

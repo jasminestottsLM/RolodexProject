@@ -1,8 +1,10 @@
-package com.liberymutual.goforcode.rolodex.models;
+package com.libertymutual.goforcode.rolodex.models;
 
 
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
+
+import com.libertymutual.goforcode.rolodex.models.Address;
 
 public class AddressModelTest {
 
