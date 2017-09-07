@@ -3,6 +3,7 @@ package com.libertymutual.goforcode.rolodex.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,10 +50,10 @@ public class Card {
     @Column(length = 255, nullable = true)
     private String companyName;
 
-    @OneToMany(mappedBy = "card")
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-    @OneToMany(mappedBy = "card")
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<PhoneNumber> phoneNumbers;
 
     public void addAddress(Address address) {
@@ -95,7 +96,7 @@ public class Card {
 
     public String getTitle() {
         return title;
-    }
+    } 
 
     public void setTitle(String title) {
         this.title = title;
