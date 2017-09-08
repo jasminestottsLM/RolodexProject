@@ -84,16 +84,20 @@ public class PhoneNumberApiControllerTests {
 		
 	}
        
-//    @Test
-//	public void test_getOne_throws_StuffNotFoundException_when_no_phone_returned_from_repo() {
-//		try {
-//			controller.getOne(1);
-//			
-//			fail("The controller did not throw the stuff not found exception");
-//		} catch(StuffNotFoundException snfe) {}
-//	}
+    @Test
+	public void test_getOne_throws_StuffNotFoundException_when_no_phone_returned_from_repo() {
+    	PhoneNumber phone = new PhoneNumber();
+    	when(phoneRepo.findOne(2l)).thenReturn(null);
+    	
+    	PhoneNumber actual;
+		try {
+			actual = controller.getOne(2l);
+		} catch (StuffNotFoundException snfe) {
+		
+		}
+	}
     
-	@Test
+    @Test
 	public void test_delete_returns_phoneNumber_deleted_when_found() {
 	Card card = new Card();
 	PhoneNumber phoneNumber = new PhoneNumber();
@@ -120,16 +124,20 @@ public class PhoneNumberApiControllerTests {
 //	@Test
 //	public void test_create_saves_and_returns_a_card() {
 //		// Arrange
-//		Card Rocky = new Card();
-//		when(cardRepo.save(Rocky)).thenReturn(Rocky);
+//		Card card = new Card();
+//		PhoneNumber phone = new PhoneNumber();
+//		when(cardRepo.findOne(2l)).thenReturn(card);
+//		when(cardRepo.save(card)).thenReturn(card);
+//		when(phoneRepo.save(phone)).thenReturn(phone);
 //				
 //		// Act
-//		Card actual = controller.create(Rocky);
+//		Card actualCard = controller.create(2l, phone);
 //		
 //		// Assert
-//		verify(cardRepo).save(Rocky);
-//		assertThat(Rocky).isSameAs(actual);
+//		verify(cardRepo).save(card);
+//		assertThat(controller.create(2l, phone)).isSameAs(actualCard);
 //	}
+	
 	
 	@Test
 	public void test_update_returns_phoneNumber_with_changes_made() throws StuffNotFoundException {

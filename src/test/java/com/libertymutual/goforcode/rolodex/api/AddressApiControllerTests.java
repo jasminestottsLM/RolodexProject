@@ -67,6 +67,19 @@ public class AddressApiControllerTests {
     }
     
     @Test
+	public void test_getOne_throws_StuffNotFoundException_when_no_address_returned_from_repo() {
+    	Address address = new Address();
+    	when(addressRepo.findOne(2l)).thenReturn(null);
+    	
+    	Address actual;
+		try {
+			actual = controller.getOne(2l);
+		} catch (StuffNotFoundException snfe) {
+		
+		}
+	}
+    
+    @Test
     public void test_delete_throws_ERDA() throws StuffNotFoundException {
         when(addressRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0)); 
     }
@@ -94,5 +107,18 @@ public class AddressApiControllerTests {
         verify(addressRepo).findOne(4l);
     }	
 	
-	
+	@Test
+	public void test_update_returns_address_with_changes_made() throws StuffNotFoundException {
+		Address address = new Address();
+		when(addressRepo.save(address)).thenReturn(address);
+		
+		// Act
+		Address actual = controller.update(address, 3l);
+		
+		// Assert
+		verify(addressRepo).save(address);
+		assertThat(actual).isSameAs(address);
+	}
+
+    
 }
