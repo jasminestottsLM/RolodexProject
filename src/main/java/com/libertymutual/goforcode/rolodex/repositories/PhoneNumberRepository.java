@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.libertymutual.goforcode.rolodex.models.PhoneNumber;
 
 @Repository
-public interface PhoneNumberRepository extends JpaRepository<PhoneNumber, Long>{
+public interface PhoneNumberRepository extends JpaRepository<PhoneNumber, Long> {
 
 }

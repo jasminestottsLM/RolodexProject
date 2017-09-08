@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.libertymutual.goforcode.rolodex.models.Card;
 
 @Repository
-public interface CardRepository extends JpaRepository<Card, Long>{
+public interface CardRepository extends JpaRepository<Card, Long> {
 
 }

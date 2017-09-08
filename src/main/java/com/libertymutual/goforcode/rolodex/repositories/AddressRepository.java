@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.libertymutual.goforcode.rolodex.models.Address;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Long>{
+public interface AddressRepository extends JpaRepository<Address, Long> {
 
-	
 }

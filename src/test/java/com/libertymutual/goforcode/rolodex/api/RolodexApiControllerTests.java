@@ -1,8 +1,6 @@
 package com.libertymutual.goforcode.rolodex.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -13,38 +11,24 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.libertymutual.goforcode.rolodex.api.RolodexApiController;
 import com.libertymutual.goforcode.rolodex.api.StuffNotFoundException;
-import com.libertymutual.goforcode.rolodex.models.Address;
 import com.libertymutual.goforcode.rolodex.models.Card;
-import com.libertymutual.goforcode.rolodex.models.PhoneNumber;
-import com.libertymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
-import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
-
-
-public class RolodexApiControllerTests { 
+public class RolodexApiControllerTests {
 
     private CardRepository cardRepo;
-    private AddressRepository addressRepo;
-    private PhoneNumberRepository phoneRepo;
+
     private RolodexApiController controller;
 
     @Before
     public void setUp() {
         cardRepo = mock(CardRepository.class);
-        addressRepo = mock(AddressRepository.class);
-        phoneRepo = mock(PhoneNumberRepository.class);
-        controller = new RolodexApiController(cardRepo, addressRepo, phoneRepo);
+        controller = new RolodexApiController(cardRepo);
     }
-    
+
     @Test
     public void test_getOne_returns_Card_from_repo() throws StuffNotFoundException {
         Card card = new Card();
@@ -53,7 +37,7 @@ public class RolodexApiControllerTests {
         assertThat(actual).isSameAs(card);
         verify(cardRepo).findOne(7l);
     }
-    
+
     @Test
     public void test_delete_returns_card_deleted_when_found() {
         Card card = new Card();
@@ -63,7 +47,7 @@ public class RolodexApiControllerTests {
         verify(cardRepo).delete(4l);
         verify(cardRepo).findOne(4l);
     }
-    
+
     @Test
     public void test_delete_throws_ERDA() throws StuffNotFoundException {
         when(cardRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
@@ -97,22 +81,21 @@ public class RolodexApiControllerTests {
 
     @Test
     public void test_constructor_for_card() {
-    	Card card = new Card(1l, "Serena", "Zywicki", "Is Awesome");
-    	
-    	assertThat(card.getId()).isSameAs(1l);
-    	assertThat(card.getFirstName()).isSameAs("Serena");
-    	assertThat(card.getLastName()).isSameAs("Zywicki");
-    	assertThat(card.getTitle()).isSameAs("Is Awesome");
+        Card card = new Card(1l, "Serena", "Zywicki", "Is Awesome");
+
+        assertThat(card.getId()).isSameAs(1l);
+        assertThat(card.getFirstName()).isSameAs("Serena");
+        assertThat(card.getLastName()).isSameAs("Zywicki");
+        assertThat(card.getTitle()).isSameAs("Is Awesome");
     }
-    
+
     @Test
     public void test_update_returns_card_with_changes_made() throws StuffNotFoundException {
-    	Card card = new Card();
-    	when(cardRepo.save(card)).thenReturn(card);
-    	Card actual = controller.update(card, 3l);
-    	verify(cardRepo).save(card);
-    	assertThat(actual).isSameAs(card);
+        Card card = new Card();
+        when(cardRepo.save(card)).thenReturn(card);
+        Card actual = controller.update(card, 3l);
+        verify(cardRepo).save(card);
+        assertThat(actual).isSameAs(card);
     }
-    	
-	
+
 }

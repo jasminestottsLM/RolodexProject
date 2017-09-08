@@ -20,16 +20,16 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 public class Card {
 
-    public Card () {
-	}
-	
-	public Card (Long id, String firstName, String lastName, String title) {
-		this.id = id;
-		this.firstName = firstName;
-		this.title = title;
-		this.lastName = lastName;
-	} 
-    
+    public Card() {
+    }
+
+    public Card(Long id, String firstName, String lastName, String title) {
+        this.id = id;
+        this.firstName = firstName;
+        this.title = title;
+        this.lastName = lastName;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -49,7 +49,7 @@ public class Card {
     @JsonProperty("person_co")
     @Column(length = 255, nullable = true)
     private String companyName;
-    
+
     @JsonProperty("picture")
     @Column(length = 255, nullable = true)
     private String picture;
@@ -61,19 +61,19 @@ public class Card {
     private List<PhoneNumber> phoneNumbers;
 
     public void addAddress(Address address) {
-        if (addresses == null) { 
+        if (addresses == null) {
             addresses = new ArrayList<Address>();
         }
         addresses.add(address);
     }
-    
+
     public void addPhoneNumber(PhoneNumber phone) {
         if (phoneNumbers == null) {
             phoneNumbers = new ArrayList<PhoneNumber>();
         }
-        phoneNumbers.add(phone); 
-    } 
-     
+        phoneNumbers.add(phone);
+    }
+
     public Long getId() {
         return id;
     }
@@ -100,7 +100,7 @@ public class Card {
 
     public String getTitle() {
         return title;
-    } 
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -130,12 +130,12 @@ public class Card {
         this.phoneNumbers = phoneNumbers;
     }
 
-	public String getPicture() {
-		return picture;
-	}
+    public String getPicture() {
+        return picture;
+    }
 
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
 }

@@ -7,7 +7,7 @@ import com.libertymutual.goforcode.rolodex.models.PhoneNumber;
 
 public class PhoneNumberModelTest {
 
-	@Test
+    @Test
     public void test_all_gets_and_sets() {
         new BeanTester().testBean(PhoneNumber.class);
     }

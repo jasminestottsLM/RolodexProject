@@ -12,12 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.libertymutual.goforcode.rolodex.models.Address;
 import com.libertymutual.goforcode.rolodex.models.Card;
-import com.libertymutual.goforcode.rolodex.models.PhoneNumber;
-import com.libertymutual.goforcode.rolodex.repositories.AddressRepository;
 import com.libertymutual.goforcode.rolodex.repositories.CardRepository;
-import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 
 import io.swagger.annotations.Api;
 
@@ -27,15 +23,11 @@ import io.swagger.annotations.Api;
 public class RolodexApiController {
 
     private CardRepository cardRepo;
-    private AddressRepository addressRepo;
-    private PhoneNumberRepository phoneRepo;
 
-    public RolodexApiController(CardRepository cardRepo, AddressRepository addressRepo, PhoneNumberRepository phoneRepo) {
+    public RolodexApiController(CardRepository cardRepo) {
         this.cardRepo = cardRepo;
-        this.addressRepo = addressRepo;
-        this.phoneRepo = phoneRepo;
 
-        Card card = new Card(); 
+        Card card = new Card();
         card.setFirstName("Ferg");
         card.setLastName("Fergusson");
         card.setTitle("FergsTitle");
@@ -67,9 +59,9 @@ public class RolodexApiController {
 
     @PostMapping("")
     public Card create(@RequestBody Card card) {
-        return cardRepo.save(card); 
+        return cardRepo.save(card);
     }
-    
+
     @GetMapping("{id}")
     public Card getOne(@PathVariable long id) throws StuffNotFoundException {
         Card card = cardRepo.findOne(id);
@@ -81,16 +73,16 @@ public class RolodexApiController {
         card.setId(id);
         return cardRepo.save(card);
     }
-    
+
     @DeleteMapping("{id}")
     public Card deleteOne(@PathVariable long id) {
         try {
             Card card = cardRepo.findOne(id);
-            cardRepo.delete(id); 
+            cardRepo.delete(id);
             return card;
         } catch (EmptyResultDataAccessException erdae) {
             return null;
         }
     }
-    
+
 }

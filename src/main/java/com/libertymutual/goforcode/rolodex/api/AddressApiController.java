@@ -25,32 +25,30 @@ import io.swagger.annotations.Api;
 @RestController
 public class AddressApiController {
 
-	private AddressRepository addressRepo;
-	private CardRepository cardRepo;
-	
-	public AddressApiController(AddressRepository addressRepo, CardRepository cardRepo) {
-		this.addressRepo = addressRepo;
-		this.cardRepo = cardRepo;
-	}
+    private AddressRepository addressRepo;
+    private CardRepository cardRepo;
 
+    public AddressApiController(AddressRepository addressRepo, CardRepository cardRepo) {
+        this.addressRepo = addressRepo;
+        this.cardRepo = cardRepo;
+    }
 
-	@GetMapping("")
-	public List<Address> getAll() {
-		return addressRepo.findAll();
-	}
+    @GetMapping("")
+    public List<Address> getAll() {
+        return addressRepo.findAll();
+    }
 
-	
-	@GetMapping("{add_id}")
-	public Address getOne(@PathVariable long id) throws StuffNotFoundException {
-		Address address = addressRepo.findOne(id);
-		if (address == null) { 
-			throw new StuffNotFoundException();
-		}
+    @GetMapping("{add_id}")
+    public Address getOne(@PathVariable long id) throws StuffNotFoundException {
+        Address address = addressRepo.findOne(id);
+        if (address == null) {
+            throw new StuffNotFoundException();
+        }
 
-		return address;
-	} 
-	   
-	@DeleteMapping("{add_id}")
+        return address;
+    }
+
+    @DeleteMapping("{add_id}")
     public Address deleteAddress(@PathVariable long id, @PathVariable long add_id) {
         try {
             Address address = addressRepo.findOne(add_id);
@@ -60,20 +58,20 @@ public class AddressApiController {
             return null;
         }
     }
-	
-	@PostMapping("")
-	public Card create(@PathVariable long id, @RequestBody Address address) {
-		Card card = cardRepo.findOne(id);     
+
+    @PostMapping("")
+    public Card create(@PathVariable long id, @RequestBody Address address) {
+        Card card = cardRepo.findOne(id);
         card.addAddress(address);
         address.setCard(card);
         addressRepo.save(address);
         cardRepo.save(card);
-        return card; 
-	}   
-	 
-	@PutMapping("{add_id}")
-	public Address update(@RequestBody Address address, @PathVariable long id) {
-		address.setId(id);
-		return addressRepo.save(address);
-	}
+        return card;
+    }
+
+    @PutMapping("{add_id}")
+    public Address update(@RequestBody Address address, @PathVariable long id) {
+        address.setId(id);
+        return addressRepo.save(address);
+    }
 }
