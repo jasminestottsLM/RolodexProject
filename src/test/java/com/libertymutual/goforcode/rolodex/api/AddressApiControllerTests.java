@@ -45,21 +45,25 @@ public class AddressApiControllerTests {
 
     @Test
     public void test_getOne_returns_Address_from_repo() throws StuffNotFoundException {
+    	Card card = new Card();
+    	when(cardRepo.findOne(2l)).thenReturn(card);
         Address address = new Address();
         when(addressRepo.findOne(7l)).thenReturn(address);
-        Address actual = controller.getOne(7l);
+        Address actual = controller.getOne(2l, 7l);
         verify(addressRepo).findOne(7l);
         assertThat(actual).isSameAs(address);
     }
 
     @Test
     public void test_getOne_throws_StuffNotFoundException_when_no_address_returned_from_repo() {
-        Address address = new Address();
+        Card card = new Card();
+        when(cardRepo.findOne(2l)).thenReturn(card);
+    	Address address = new Address();
         when(addressRepo.findOne(2l)).thenReturn(null);
 
         Address actual;
         try {
-            actual = controller.getOne(2l);
+            actual = controller.getOne(2l, 2l);
         } catch (StuffNotFoundException snfe) {
 
         }
