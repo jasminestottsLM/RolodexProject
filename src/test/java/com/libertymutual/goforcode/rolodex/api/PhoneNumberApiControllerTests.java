@@ -44,143 +44,6 @@ public class PhoneNumberApiControllerTests {
         phoneRepo = mock(PhoneNumberRepository.class);
         controller = new PhoneNumberApiController(phoneRepo, cardRepo);
     }
-    
-//    @Test
-//    public void test_getOne_returns_Card_from_repo() throws StuffNotFoundException {
-//        Card card = new Card();
-//        when(cardRepo.findOne(7l)).thenReturn(card);
-//        Card actual = controller.getOne(7l);
-//        assertThat(actual).isSameAs(card);
-//        verify(cardRepo).findOne(7l);
-//    }
-    
-//    @Test
-//    public void test_delete_returns_card_deleted_when_found() {
-//        Card card = new Card();
-//        when(cardRepo.findOne(4l)).thenReturn(card);
-//        Card actual = controller.deleteOne(4l);
-//        assertThat(card).isSameAs(actual);
-//        verify(cardRepo).delete(4l);
-//        verify(cardRepo).findOne(4l);
-//    }
-    
-//    @Test
-//    public void test_delete_throws_ERDA() throws StuffNotFoundException {
-//        when(cardRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
-//        Card actual = controller.deleteOne(4l);
-//        assertThat(actual).isNull();
-//        verify(cardRepo).findOne(4l);
-//    }
-
-//    @Test
-//    public void test_get_all() {
-//        ArrayList<Card> cards = new ArrayList<Card>();
-//        cards.add(new Card());
-//        cards.add(new Card());
-//        when(cardRepo.findAll()).thenReturn(cards);
-//        List<Card> actualCards = controller.getAll();
-//        assertThat(actualCards.size()).isEqualTo(2);
-//        assertThat(actualCards.get(0)).isSameAs(cards.get(0));
-//        verify(cardRepo).findAll();
-//    }
-
-//    @Test
-//    public void test_create_adds_a_card_record() {
-//        Card card = new Card();
-//        when(cardRepo.save(card)).thenReturn(card);
-//
-//        Card actualCard = controller.create(card);
-//
-//        verify(cardRepo).save(card);
-//        assertThat(controller.create(actualCard)).isSameAs(card);
-//    }
-
-//    @Test
-//    public void test_constructor_for_card() {
-//    	Card card = new Card(1l, "Serena", "Zywicki", "Is Awesome");
-//    	
-//    	assertThat(card.getId()).isSameAs(1l);
-//    	assertThat(card.getFirstName()).isSameAs("Serena");
-//    	assertThat(card.getLastName()).isSameAs("Zywicki");
-//    	assertThat(card.getTitle()).isSameAs("Is Awesome");
-//    }
-    
-//    @Test
-//    public void test_update_returns_card_with_changes_made() throws StuffNotFoundException {
-//    	Card card = new Card();
-//    	when(cardRepo.save(card)).thenReturn(card);
-//    	Card actual = controller.update(card, 3l);
-//    	verify(cardRepo).save(card);
-//    	assertThat(actual).isSameAs(card);
-//    }
-    
-//    @Test
-//    public void test_update__phone_returns_phone_with_changes_made() throws StuffNotFoundException {
-//    	PhoneNumber phone = new PhoneNumber();
-//    	when(phoneRepo.save(phone)).thenReturn(phone);
-//    	PhoneNumber actual = controller.updatePhone(phone, 3l);
-//    	verify(phoneRepo).save(phone);
-//    	assertThat(actual).isSameAs(phone);
-//    }
-    
-//    @Test
-//    public void test_update__address_returns_phone_with_changes_made() throws StuffNotFoundException {
-//    	Address address = new Address();
-//    	when(addressRepo.save(address)).thenReturn(address);
-//    	Address actual = controller.updateAddress(address, 3l);
-//    	verify(addressRepo).save(address);
-//    	assertThat(actual).isSameAs(address);
-//    }
-//    
-//    @Test
-//    public void add_Address_sets_Address() {
-//    	Card card = new Card();
-//    	Address address = new Address();
-//    	when(cardRepo.findOne(4l)).thenReturn(card);
-//    	when(addressRepo.findOne(4l)).thenReturn(address);
-//    	
-//    	Card actualCard = controller.associateAnAddress(4l, address);
-//    	
-//    	verify(cardRepo).findOne(4l);
-//    	assertThat(card).isSameAs(actualCard);
-//    }
-//	
-//	@Test
-//    public void add_PhoneNumber_sets_PhoneNumber() {
-//    	Card card = new Card();
-//    	PhoneNumber phone = new PhoneNumber();
-//    	when(cardRepo.findOne(4l)).thenReturn(card);
-//    	when(phoneRepo.findOne(4l)).thenReturn(phone);
-//    	
-//    	Card actualCard = controller.create(4l, phone);
-//    	
-//    	verify(cardRepo).findOne(4l);
-//    	assertThat(card).isSameAs(actualCard);
-//    }
-	
-//	@Test
-//    public void test_delete_returns_address_deleted_when_found() {
-//     Card card = new Card();
-//     Address address = new Address();
-//     when(cardRepo.findOne(2l)).thenReturn(card);
-//     when(addressRepo.findOne(4l)).thenReturn(address);
-//     
-//     Address actual = controller.deleteAddress(2l, 4l);
-//     
-//     assertThat(actual).isSameAs(address);
-//     verify(addressRepo).delete(4l);
-//     verify(addressRepo).findOne(4l);
-//	
-//}
-//	
-//    @Test
-//    public void test_delete_address_throws_ERDA() throws StuffNotFoundException {
-//        when(addressRepo.findOne(4l)).thenThrow(new EmptyResultDataAccessException(0));
-//        Address actual = controller.deleteAddress(2l, 4l);
-//        assertThat(actual).isNull();
-//        verify(addressRepo).findOne(4l);
-//    }
-
 
 	@Test
 	public void test_delete_returns_phoneNumber_deleted_when_found() {
@@ -195,7 +58,7 @@ public class PhoneNumberApiControllerTests {
 	verify(phoneRepo).delete(4l);
 	verify(phoneRepo).findOne(4l);
 	
-}    
+	}    
 	
 	@Test
     public void test_delete_phone_throws_ERDA() throws StuffNotFoundException {
@@ -203,7 +66,8 @@ public class PhoneNumberApiControllerTests {
     PhoneNumber actual = controller.deletePhone(2l, 4l);
     assertThat(actual).isNull();
     verify(phoneRepo).findOne(4l);
-}
+	
+	}
 	
 	
 	

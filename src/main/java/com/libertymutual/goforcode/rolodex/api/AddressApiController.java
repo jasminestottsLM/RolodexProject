@@ -43,7 +43,7 @@ public class AddressApiController {
 	@GetMapping("{add_id}")
 	public Address getOne(@PathVariable long id) throws StuffNotFoundException {
 		Address address = addressRepo.findOne(id);
-		if (address == null) {
+		if (address == null) { 
 			throw new StuffNotFoundException();
 		}
 
