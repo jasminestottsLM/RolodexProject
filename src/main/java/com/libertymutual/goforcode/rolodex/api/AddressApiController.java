@@ -70,8 +70,10 @@ public class AddressApiController {
     }
 
     @PutMapping("{add_id}")
-    public Address update(@RequestBody Address address, @PathVariable long id) {
-        address.setId(id);
+    public Address update(@RequestBody Address address, @PathVariable long id, @PathVariable long add_id) {
+    	Card card = cardRepo.findOne(id);
+    	address.setCard(card);
+        address.setId(add_id);
         return addressRepo.save(address);
     }
 }

@@ -70,8 +70,10 @@ public class PhoneNumberApiController {
     }
 
     @PutMapping("{pho_id}")
-    public PhoneNumber update(@RequestBody PhoneNumber phone, @PathVariable long id) {
-        phone.setId(id);
+    public PhoneNumber update(@RequestBody PhoneNumber phone, @PathVariable long id, @PathVariable long pho_id) {
+        Card card = cardRepo.findOne(id);
+        phone.setCard(card);
+    	phone.setId(pho_id);
         return phoneRepo.save(phone);
     }
 }

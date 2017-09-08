@@ -131,7 +131,7 @@ public class PhoneNumberApiControllerTests {
         when(phoneRepo.save(phone)).thenReturn(phone);
 
         // Act
-        PhoneNumber actual = controller.update(phone, 3l);
+        PhoneNumber actual = controller.update(phone, 3l, 2l);
 
         // Assert
         verify(phoneRepo).save(phone);

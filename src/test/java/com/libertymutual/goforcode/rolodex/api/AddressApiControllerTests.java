@@ -103,7 +103,7 @@ public class AddressApiControllerTests {
         when(addressRepo.save(address)).thenReturn(address);
 
         // Act
-        Address actual = controller.update(address, 3l);
+        Address actual = controller.update(address, 3l, 2l);
 
         // Assert
         verify(addressRepo).save(address);
