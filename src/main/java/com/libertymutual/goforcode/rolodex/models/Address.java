@@ -8,99 +8,96 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(
-        generator=ObjectIdGenerators.PropertyGenerator.class,
-        property="id"
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 @Entity
 public class Address {
 
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	
-	@JsonProperty("address_street")
-	@Column(length=255, nullable = false)
-	private String street;
-	
-	@JsonProperty("address_city")
-	@Column(length=75, nullable = false)
-	private String city;
-	
-	@JsonProperty("address_state")
-	@Column(length=2, nullable = false)
-	private String state;
-	
-	@JsonProperty("address_zip")
-	@Column(length=5, nullable = false)
-	private String zip;
-	
-	@JsonProperty("address_type")
-	@Column(length=75, nullable = false)
-	private String type;
 
-	@ManyToOne
-	private Card card;
-	 
-	
-	
-	public Long getId() {
-		return id;
-	}
+    @JsonProperty("address_street")
+    @Column(length = 255, nullable = false)
+    private String street;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @JsonProperty("address_city")
+    @Column(length = 75, nullable = false)
+    private String city;
 
-	public String getStreet() {
-		return street;
-	}
+    @JsonProperty("address_state")
+    @Column(length = 2, nullable = false)
+    private String state;
 
-	public void setStreet(String street) {
-		this.street = street;
-	}
+    @JsonProperty("address_zip")
+    @Column(length = 5, nullable = false)
+    private String zip;
 
-	public String getCity() {
-		return city;
-	}
+    @JsonProperty("address_type")
+    @Column(length = 75, nullable = false)
+    private String type;
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    @JsonIgnore
+    @ManyToOne
+    private Card card;
 
-	public String getState() {
-		return state;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getZip() {
-		return zip;
-	}
+    public String getStreet() {
+        return street;
+    }
 
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public Card getCard() {
-		return card;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setCard(Card card) {
-		this.card = card;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 }

@@ -8,63 +8,60 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(
-        generator=ObjectIdGenerators.PropertyGenerator.class,
-        property="id"
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 
 @Entity
 public class PhoneNumber {
 
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	
-	@JsonProperty("phone_number")
-	@Column(length=12, nullable = false)
-	private String phoneNumber;
-	
-	@JsonProperty("phone_type")
-	@Column(length=75, nullable = false)
-	private String type;
 
-	@ManyToOne
-	private Card card;
-	
-	
+    @JsonProperty("phone_number")
+    @Column(length = 12, nullable = false)
+    private String phoneNumber;
 
-	public Long getId() {
-		return id;
-	}
+    @JsonProperty("phone_type")
+    @Column(length = 75, nullable = false)
+    private String type;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @JsonIgnore
+    @ManyToOne
+    private Card card;
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public Card getCard() {
-		return card;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setCard(Card card) {
-		this.card = card;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 }
