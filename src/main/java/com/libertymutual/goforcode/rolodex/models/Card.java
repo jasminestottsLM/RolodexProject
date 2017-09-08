@@ -28,7 +28,7 @@ public class Card {
 		this.firstName = firstName;
 		this.title = title;
 		this.lastName = lastName;
-	}
+	} 
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,19 +57,19 @@ public class Card {
     private List<PhoneNumber> phoneNumbers;
 
     public void addAddress(Address address) {
-        if (address == null) { 
+        if (addresses == null) { 
             addresses = new ArrayList<Address>();
         }
         addresses.add(address);
     }
     
-    public void addPhoneNumber(PhoneNumber phoneNumber) {
-        if (phoneNumber == null) {
+    public void addPhoneNumber(PhoneNumber phone) {
+        if (phoneNumbers == null) {
             phoneNumbers = new ArrayList<PhoneNumber>();
         }
-        phoneNumbers.add(phoneNumber);
-    }
-    
+        phoneNumbers.add(phone); 
+    } 
+     
     public Long getId() {
         return id;
     }

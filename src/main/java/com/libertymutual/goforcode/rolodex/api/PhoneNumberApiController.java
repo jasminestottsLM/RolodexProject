@@ -47,9 +47,9 @@ public class PhoneNumberApiController {
 		PhoneNumber phone = phoneRepo.findOne(id);
 		if (phone == null) {
 			throw new StuffNotFoundException();
-		}
-
-		return phone;
+		} 
+ 
+		return phone; 
 	}  
 	   
 	@DeleteMapping("{pho_id}")
@@ -59,18 +59,18 @@ public class PhoneNumberApiController {
             phoneRepo.delete(pho_id);
             return phone;
         } catch (EmptyResultDataAccessException erdae) {
-            return null;
+            return null; 
         }
     } 
 	
 	@PostMapping("")
 	public Card create(@PathVariable long id, @RequestBody PhoneNumber phone) {
 		Card card = cardRepo.findOne(id);     
-        card.addPhoneNumber(phone);
+        card.addPhoneNumber(phone); 
         phone.setCard(card);
         phoneRepo.save(phone);
         cardRepo.save(card);
-        return card; 
+        return card;  
 	}  
 	 
 	@PutMapping("{pho_id}")

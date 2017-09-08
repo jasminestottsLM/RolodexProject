@@ -120,5 +120,21 @@ public class AddressApiControllerTests {
 		assertThat(actual).isSameAs(address);
 	}
 
-    
+	@Test
+	public void test_create_saves_and_returns_a_card_with_address() throws StuffNotFoundException {
+		
+		//Arrange
+		Card card = new Card();
+		Address address = new Address();
+		ArrayList<Address> addresses = new ArrayList<>();
+		when(addressRepo.findOne(2l)).thenReturn(address);
+		when(cardRepo.findOne(3l)).thenReturn(card);
+		
+		//Act
+		addresses.add(address);
+		controller.create(3l, address);
+				
+		//Assert 
+		assertThat(card.getAddresses()).contains(address);
+	}
 }

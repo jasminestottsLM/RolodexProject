@@ -38,14 +38,12 @@ import com.libertymutual.goforcode.rolodex.repositories.PhoneNumberRepository;
 public class PhoneNumberApiControllerTests { 
 
     private CardRepository cardRepo;
-    private AddressRepository addressRepo;
     private PhoneNumberRepository phoneRepo;
     private PhoneNumberApiController controller;
 
     @Before
     public void setUp() {
         cardRepo = mock(CardRepository.class);
-        addressRepo = mock(AddressRepository.class);
         phoneRepo = mock(PhoneNumberRepository.class);
         controller = new PhoneNumberApiController(phoneRepo, cardRepo);
     }
@@ -121,22 +119,23 @@ public class PhoneNumberApiControllerTests {
 	
 	}
 	
-//	@Test
-//	public void test_create_saves_and_returns_a_card() {
-//		// Arrange
-//		Card card = new Card();
-//		PhoneNumber phone = new PhoneNumber();
-//		when(cardRepo.findOne(2l)).thenReturn(card);
-//		when(cardRepo.save(card)).thenReturn(card);
-//		when(phoneRepo.save(phone)).thenReturn(phone);
-//				
-//		// Act
-//		Card actualCard = controller.create(2l, phone);
-//		
-//		// Assert
-//		verify(cardRepo).save(card);
-//		assertThat(controller.create(2l, phone)).isSameAs(actualCard);
-//	}
+	@Test
+	public void test_create_saves_and_returns_a_card_with_phone_number() throws StuffNotFoundException {
+		
+		//Arrange
+		Card card = new Card();
+		PhoneNumber phone = new PhoneNumber();
+		ArrayList<PhoneNumber> phones = new ArrayList<>();
+		when(phoneRepo.findOne(2l)).thenReturn(phone);
+		when(cardRepo.findOne(3l)).thenReturn(card);
+		
+		//Act
+		phones.add(phone);
+		controller.create(3l, phone);
+				
+		//Assert 
+		assertThat(card.getPhoneNumbers()).contains(phone);
+	}
 	
 	
 	@Test
