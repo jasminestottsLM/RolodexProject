@@ -53,11 +53,13 @@ public class PhoneNumberApiControllerTests {
     @Test
     public void test_getOne_returns_phoneNumber_returned_from_repo() throws StuffNotFoundException {
         // Arrange
+    	Card card = new Card();
+    	when(cardRepo.findOne(3l)).thenReturn(card);
         PhoneNumber phone = new PhoneNumber();
         when(phoneRepo.findOne(2l)).thenReturn(phone);
 
         // Act
-        PhoneNumber actual = controller.getOne(2l);
+        PhoneNumber actual = controller.getOne(3l, 2l);
 
         // Assert
         assertThat(actual).isSameAs(phone);
@@ -67,12 +69,14 @@ public class PhoneNumberApiControllerTests {
 
     @Test
     public void test_getOne_throws_StuffNotFoundException_when_no_phone_returned_from_repo() {
-        PhoneNumber phone = new PhoneNumber();
-        when(phoneRepo.findOne(2l)).thenReturn(null);
+        Card card = new Card();
+        when(cardRepo.findOne(4l)).thenReturn(card);
+    	PhoneNumber phone = new PhoneNumber();
+        when(phoneRepo.findOne(3l)).thenReturn(null);
 
         PhoneNumber actual;
         try {
-            actual = controller.getOne(2l);
+            actual = controller.getOne(4l, 2l);
         } catch (StuffNotFoundException snfe) {
 
         }

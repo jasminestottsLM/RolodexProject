@@ -39,8 +39,8 @@ public class PhoneNumberApiController {
     }
 
     @GetMapping("{add_id}")
-    public PhoneNumber getOne(@PathVariable long id) throws StuffNotFoundException {
-        PhoneNumber phone = phoneRepo.findOne(id);
+    public PhoneNumber getOne(@PathVariable long id, @PathVariable long pho_id) throws StuffNotFoundException {
+        PhoneNumber phone = phoneRepo.findOne(pho_id);
         if (phone == null) {
             throw new StuffNotFoundException();
         }
