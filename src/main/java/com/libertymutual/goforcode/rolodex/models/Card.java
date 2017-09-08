@@ -49,6 +49,10 @@ public class Card {
     @JsonProperty("person_co")
     @Column(length = 255, nullable = true)
     private String companyName;
+    
+    @JsonProperty("picture")
+    @Column(length = 255, nullable = true)
+    private String picture;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Address> addresses;
@@ -125,5 +129,13 @@ public class Card {
     public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 
 }
