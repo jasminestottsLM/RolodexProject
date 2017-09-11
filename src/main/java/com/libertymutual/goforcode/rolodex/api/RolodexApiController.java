@@ -22,67 +22,67 @@ import io.swagger.annotations.Api;
 @RestController
 public class RolodexApiController {
 
-    private CardRepository cardRepo;
+	private CardRepository cardRepo;
 
-    public RolodexApiController(CardRepository cardRepo) {
-        this.cardRepo = cardRepo;
+	public RolodexApiController(CardRepository cardRepo) {
+		this.cardRepo = cardRepo;
 
-        Card card = new Card();
-        card.setFirstName("Ferg");
-        card.setLastName("Fergusson");
-        card.setTitle("FergsTitle");
-        cardRepo.save(card);
+		Card card = new Card();
+		card.setFirstName("Ferg");
+		card.setLastName("Fergusson");
+		card.setTitle("FergsTitle");
+		cardRepo.save(card);
 
-        card = new Card();
-        card.setFirstName("Walt");
-        card.setLastName("Waltington");
-        card.setTitle("WaltsTitle");
-        cardRepo.save(card);
+		card = new Card();
+		card.setFirstName("Walt");
+		card.setLastName("Waltington");
+		card.setTitle("WaltsTitle");
+		cardRepo.save(card);
 
-        card = new Card();
-        card.setFirstName("Branch");
-        card.setLastName("Brancherson");
-        card.setTitle("BranchsTitle");
-        cardRepo.save(card);
+		card = new Card();
+		card.setFirstName("Branch");
+		card.setLastName("Brancherson");
+		card.setTitle("BranchsTitle");
+		cardRepo.save(card);
 
-        card = new Card();
-        card.setFirstName("Vic");
-        card.setLastName("Victoria");
-        card.setTitle("VicsTitle");
-        cardRepo.save(card);
-    }
+		card = new Card();
+		card.setFirstName("Vic");
+		card.setLastName("Victoria");
+		card.setTitle("VicsTitle");
+		cardRepo.save(card);
+	}
 
-    @GetMapping("")
-    public List<Card> getAll() {
-        return cardRepo.findAll();
-    }
+	@GetMapping("")
+	public List<Card> getAll() {
+		return cardRepo.findAll();
+	}
 
-    @PostMapping("")
-    public Card create(@RequestBody Card card) {
-        return cardRepo.save(card);
-    }
+	@PostMapping("")
+	public Card create(@RequestBody Card card) {
+		return cardRepo.save(card);
+	}
 
-    @GetMapping("{id}")
-    public Card getOne(@PathVariable long id) throws StuffNotFoundException {
-        Card card = cardRepo.findOne(id);
-        return card;
-    }
+	@GetMapping("{id}")
+	public Card getOne(@PathVariable long id) throws StuffNotFoundException {
+		Card card = cardRepo.findOne(id);
+		return card;
+	}
 
-    @PutMapping("{id}")
-    public Card update(@RequestBody Card card, @PathVariable long id) throws StuffNotFoundException {
-        card.setId(id);
-        return cardRepo.save(card);
-    }
+	@PutMapping("{id}")
+	public Card update(@RequestBody Card card, @PathVariable long id) throws StuffNotFoundException {
+		card.setId(id);
+		return cardRepo.save(card);
+	}
 
-    @DeleteMapping("{id}")
-    public Card deleteOne(@PathVariable long id) {
-        try {
-            Card card = cardRepo.findOne(id);
-            cardRepo.delete(id);
-            return card;
-        } catch (EmptyResultDataAccessException erdae) {
-            return null;
-        }
-    }
+	@DeleteMapping("{id}")
+	public Card deleteOne(@PathVariable long id) {
+		try {
+			Card card = cardRepo.findOne(id);
+			cardRepo.delete(id);
+			return card;
+		} catch (EmptyResultDataAccessException erdae) {
+			return null;
+		}
+	}
 
 }
