@@ -12,6 +12,9 @@ function fillInDetails(data) {
 		<div>
 			<b>${phone.phone_number}</b>
 			<div>Phone Type: ${phone.phone_type}</div>
+			<form class ="delete-phone-form" method="post" action= "/cards/${data.id}/phones/${phone.id}">
+			<button>Delete Phone</button>
+			</form>
 		</div>
 		`;
 	}
@@ -24,6 +27,9 @@ function fillInDetails(data) {
 			<div>${address.address_city}</div>
 			<div>${address.address_state}</div>
 			<div>${address.address_zip}</div>
+			<form class ="delete-address-form" method="post" action= "/cards/${data.id}/phones/${address.id}">
+			<button>Delete Address</button>
+			</form>
 		</div>
 		`;
 	}
@@ -85,7 +91,6 @@ $(document).on('submit', '.delete-card-form', function (e) {
 		.fail(error => console.error(error));
 });
 
-
 $('#add-entry-form').on('submit', function (e) {
 	e.preventDefault();
 	
@@ -131,6 +136,30 @@ $(document).on('submit', '#create-phone-form', function (e) {
             .fail(error => console.error(error));
 });
 
+
+$(document).on('submit', '.delete-phone-form', function (e) {
+	e.preventDefault();
+	
+	$.ajax(this.action, { type: 'DELETE' })
+		.done(() => {
+			$(this)
+				.closest('div')
+				.remove();
+		})
+		.fail(error => console.error(error));
+});
+
+$(document).on('submit', '.delete-address-form', function (e) {
+	e.preventDefault();
+	
+	$.ajax(this.action, { type: 'DELETE' })
+		.done(() => {
+			$(this)
+				.closest('div')
+				.remove();
+		})
+		.fail(error => console.error(error));
+});
 
 $(document).on('submit', '#create-address-form', function (e) {
     e.preventDefault();
