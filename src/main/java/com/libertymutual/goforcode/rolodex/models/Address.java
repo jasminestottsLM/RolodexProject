@@ -30,7 +30,7 @@ public class Address {
     private String city;
 
     @JsonProperty("address_state")
-    @Column(length = 2, nullable = false)
+    @Column(length = 75, nullable = false)
     private String state;
 
     @JsonProperty("address_zip")
