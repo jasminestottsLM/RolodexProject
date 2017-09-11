@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Our Simple Front-End</title>
+</head>
+
+<body>
+  <form id="create-card-form" method="post" action="/cards">
+  	<input required type="text" id="first_name" name="first_name" placeholder="First Name">
+  	<br>
+  	<input required type="text" id="last_name" name="last_name" placeholder="Last Name">
+  	<br>
+  	<input required type="text" id="person_title" name="person_title" placeholder="Title">
+  	<br>
+  	<input type="text" id="person_co" name="person_co" placeholder="Company">
+  	<br>
+  	<input type="text" id="picture" name="picture" placeholder="Url for the picture">
+  	<br>
+  	<button type="submit">Create contact card</button>
+  	<br>
+  	
+  </form>
+  
+  <ul id="card-list"></ul>
+  <div id="card-detail"></div>
+  
+  <script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
