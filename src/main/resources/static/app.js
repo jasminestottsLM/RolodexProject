@@ -1,5 +1,64 @@
 const baseurl = 'http://localhost:14400/cards';
 
+function fillInDetails(data) {
+	let html = `
+		<h1>${data.first_name} ${data.last_name}</h1>
+		<h2>Title: ${data.person_title}</h2>
+		<div>Company: ${data.person_co}</div> 
+	`;
+	
+	for (let phone of data.phoneNumbers) {
+		html += `
+		<div>
+			<b>${phone.phone_number}</b>
+			<div>Phone Type: ${phone.phone_type}</div>
+		</div>
+		`;
+	}
+	
+	for (let address of data.addresses) {
+		html += ` 
+		<div>
+			<b>${address.address_type}</b>
+			<div>${address.address_street}</div>
+			<div>${address.address_city}</div>
+			<div>${address.address_state}</div>
+			<div>${address.address_zip}</div>
+		</div>
+		`;
+	}
+	
+	html += `
+		<form id="create-phone-form" method="post" action="/cards/${data.id}/phones">
+			<input name="phone_type" id="phone_type" placeholder="Phone Type">
+			<br><br>
+			<input name="phone_number" id="phone_number" placeholder="(###) ###-####">
+			<br><br>
+			<button>Add Phone Number</button>
+		</form>
+		<br><br>
+	 `;	
+	
+	html += `
+		<form id="create-address-form" method="post" action="/cards/${data.id}/addresses">
+			<input name="address_type" id="address_type" placeholder="Address Type">
+			<br><br>
+			<input name="address_street" id="address_street" placeholder="Street Address">
+			<br><br>
+			<input name="address_city" id="address_city" placeholder="City">
+			<br><br>
+			<input name="address_state" id="address_state" placeholder="State">
+			<br><br>
+			<input name="address_zip" id="address_zip" placeholder="Zip Code">
+			<br><br>
+			<button>Add Address</button>
+		</form>
+	 `;	
+		
+	$('#card-detail').html(html);
+}
+
+
 function createListElement (card) {
 	$('<li></li>')
 	.html(`
@@ -13,6 +72,7 @@ function createListElement (card) {
 	.appendTo($('#card-list'));
 } 
 
+
 $(document).on('submit', '.delete-card-form', function (e) {
 	e.preventDefault();
 	
@@ -24,6 +84,7 @@ $(document).on('submit', '.delete-card-form', function (e) {
 		})
 		.fail(error => console.error(error));
 });
+
 
 $('#add-entry-form').on('submit', function (e) {
 	e.preventDefault();
@@ -42,18 +103,10 @@ $('#add-entry-form').on('submit', function (e) {
 		contentType: 'application/json'
 	};
 	
-// console.log(this.action)
 	$.ajax(this.action, ajaxOptions)
 		.done((card) => {
-// .done(function (card) {
-	// replaced by above, then moved to createListElement function
 			createListElement(card);
 		})
-// })
-// .fail(function error() {
-// cnosole.log(error);
-// });
-	// same thing as
 		.fail(error => console.error(error));	
 });
 
@@ -72,19 +125,22 @@ $(document).on('submit', '#create-phone-form', function (e) {
         };
         
         $.ajax(this.action, ajaxOptions)
-            .done(function (card) {
-                console.log(card);                
+            .done(function (data) {
+            	fillInDetails(data);
             })
             .fail(error => console.error(error));
 });
+
 
 $(document).on('submit', '#create-address-form', function (e) {
     e.preventDefault();
     
     let payload = {
             address_type: $('#address_type').val(),
-            
-            
+            address_street: $('#address_street').val(),
+            address_city: $('#address_city').val(),
+            address_state: $('#address_state').val(),
+            address_zip: $('#address_zip').val()
         };
         
         let ajaxOptions = {
@@ -94,8 +150,8 @@ $(document).on('submit', '#create-address-form', function (e) {
         };
         
         $.ajax(this.action, ajaxOptions)
-            .done(function (card) {
-                console.log(card);                
+            .done(function (data) {
+            	fillInDetails(data);
             })
             .fail(error => console.error(error));
 });
@@ -107,32 +163,7 @@ $(document).on('click', 'a[data-card-id]', function (e) {
 	
 	$.getJSON(baseurl + '/' + cardId, function (data) {
 		data.person_co = data.person_co || '<i>no company specified</i>';
-		
-		let html = `
-			<h1>${data.first_name} ${data.last_name}</h1>
-			<h2>Title: ${data.person_title}</h2>
-			<div>Company: ${data.person_co}</div> 
-		`;
-		for (let phone of data.phoneNumbers) {
-			html += `
-			<div>
-				<b>${phone.phone_number}</b>
-				<div>${phone.phone_type}</div>
-			</div>
-			`;
-		}
-		
-		html += `
-			<form id="create-phone-form" method="post" action="/cards/${data.id}/phones">
-				<input name="phone_type" id="phone_type" placeholder="Phone Type">
-				<br><br>
-				<input name="phone_number" id="phone_number" placeholder="(###) ###-####">
-				<br><br>
-				<button>Add Phone Number</button>
-			</form>
-		 `;	
-			
-		$('#card-detail').html(html);
+		fillInDetails(data);
 		
 	});
 });
